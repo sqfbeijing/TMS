@@ -1,0 +1,12 @@
+
+见：http://www.zhihu.com/question/19786827
+
+cookie保存在客户端，session保存在服务器端，
+cookie目的可以跟踪会话，也可以保存用户喜好或者保存用户名密码session用来跟踪会话
+
+后面衍生出session技术,session技术是要使用到cookie的，之所以出现session技术，主要是为了安全。
+
+session与localStorage的区别:
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+The only difference is that, while data stored in localStorage has no expiration time, data stored in sessionStorage gets cleared when the browsing session ends—that is, when the browser is closed.

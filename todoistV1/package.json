@@ -1,0 +1,8 @@
+{
+	"name": "pbsproject",
+	"version": "2.0.0",
+	"description": "由nodejs构建服务器端的教育平台",
+	"dependencies": {
+		"mime": "~1.2.7"
+	}
+}
