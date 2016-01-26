@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑", "Microsoft YaHei", " 微软雅黑", SimSun, " 宋体", Heiti, " 黑体", sans-serif;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.iconfont.icon-icon-tasktodoist {
+  color: #1fbc5a;
+}
+header.top-header {
+  background: rgba(0, 0, 0, 0.15);
+  height: 45px;
+}
+header.top-header .icon-icon-tasktodoist {
+  font-size: 30px;
+  line-height: 45px;
+}
+header.top-header nav .left,
+header.top-header nav .right {
+  width: 50%;
+  height: 45px;
+}
+header.top-header nav .left {
+  padding: 0 0 0 10%;
+  float: left;
+  width: 50%;
+}
+header.top-header nav .right {
+  padding: 0 0 0 100px;
+  float: right;
+  width: 50%;
+}
+header.top-header nav .right a {
+  line-height: 45px;
+  margin: 0 0 0 30px;
+  color: #1DA951;
+}
+header.top-header nav .right a:hover {
+  color: #2CBD62;
+}
+header.top-header nav span.description {
+  line-height: 100%;
+  font-size: 17px;
+  margin-left: 30px;
+  color: #424242;
+}
+header.top-header nav span.description span.name {
+  color: #1fbc5a;
+  font-family: cursive;
+}
+main > section {
+  height: 600px;
+}
+main section.left {
+  padding: 0 0 0 100px;
+  width: 35%;
+  background: #E6E6E6;
+  float: left;
+}
+main section.left .header.tips {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #000000;
+}
+main section.left .classification {
+  height: 40px;
+  line-height: 40px;
+}
+main section.left .classification:hover {
+  background: #F3F3F3;
+}
+main section.left .tasks.accordingto-types .tasks-group .single-task .icon-shanchu {
+  position: absolute;
+  right: 30px;
+  display: none;
+}
+main section.left .tasks.accordingto-types .tasks-group .single-task.hover .icon-shanchu {
+  display: inline;
+}
+main section.left .tasks.accordingto-types .single-task {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+}
+main section.left .tasks.accordingto-types .single-task:hover {
+  background: #F5F5F5;
+  border: 1px solid #D6D6D6;
+  cursor: pointer;
+  border-radius: 2px;
+}
+main section.left .tasks.accordingto-types .single-task.clicked {
+  background: #F5F5F5;
+  border: 1px solid #D6D6D6;
+  cursor: pointer;
+  border-radius: 2px;
+}
+main section.left .tasks.accordingto-types .single-task.enter-task {
+  display: none;
+  line-height: 30px;
+  border-radius: 3px;
+  border: 2px solid #4DCA7C;
+}
+main section.left .tasks.accordingto-types .single-task.enter-task input[type="text"] {
+  border: 1px solid #F3F3F3;
+  outline: none;
+  border-radius: 4px;
+  height: 23px;
+  padding: 0;
+  float: left;
+  width: 180px;
+  margin: 1.6px 20px 1.6px 3px;
+}
+main section.left .tasks.accordingto-types .single-task button {
+  /* padding: 4px; */
+  float: left;
+  /* line-height: 22px; */
+  height: 24px;
+  border: 1px solid #C1C1C1;
+  padding: 3px;
+  margin: 1px 0px 1px 20px;
+  background: #73C792;
+}
+main .icon-gongzuonan {
+  color: green;
+}
+main .icon-xuexi {
+  color: #009ADC;
+}
+main i.iconfont.icon-yule {
+  color: #FF4D00;
+}
+main i.iconfont.icon-jiaotongiconplane {
+  color: #A2008A;
+}
+section.right {
+  overflow: hidden;
+  width: 65%;
+  background: rgba(217, 217, 217, 0.32);
+  float: left;
+  position: relative;
+}
+section.right .task-items {
+  position: absolute;
+  left: -200px;
+  top: 0;
+  height: 270px;
+  width: 200px;
+  background: #1FBC5A;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+section.right .task-items header.task-type {
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 900;
+}
+section.right .task-items li {
+  height: 22px;
+  list-style-type: none;
+  line-height: 22px;
+  cursor: pointer;
+}
+section.right .task-items li:hover {
+  background: #F5F5F5;
+  border: 1px solid #D6D6D6;
+  cursor: pointer;
+  border-radius: 2px;
+}
+section.right .task-items li.enter {
+  display: none;
+  text-align: center;
+  overflow: hidden;
+  border: none;
+  height: 50px;
+  background: #1FBC5A;
+}
+section.right .task-items li.enter input {
+  outline: none;
+  border-radius: 2px;
+  border: none;
+  height: 23px;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 0;
+}
+section.right .detailed {
+  overflow: hidden;
+}
+section.right .detailed header {
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 2px solid gainsboro;
+  margin: 20px auto;
+  padding: 0 0 10px 0;
+}

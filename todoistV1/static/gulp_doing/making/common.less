@@ -1,0 +1,229 @@
+body{
+	margin: 0; 
+	font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑","Microsoft YaHei", " 微软雅黑", SimSun, " 宋体", Heiti, " 黑体", sans-serif
+}
+*, *:before, *:after{
+	box-sizing: border-box;
+}
+ul {
+	padding: 0; 
+	margin: 0;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.iconfont.icon-icon-tasktodoist{
+	color: #1fbc5a;
+}
+// header部分
+header.top-header {
+	background: rgba(0, 0, 0, 0.15);
+	height: 45px;
+	.icon-icon-tasktodoist {
+		font-size: 30px;
+		line-height: 45px;
+	}
+	nav {
+		.left, .right {
+			width: 50%;
+			height: 45px;
+		}
+		.left {
+			padding: 0 0 0 10%;
+			float: left;
+			width: 50%;
+		}
+		.right {
+			padding: 0 0 0 100px;
+			float: right;
+			width: 50%;
+			a {
+				line-height: 45px;
+				margin: 0 0 0 30px;
+				color: #1DA951;
+				&:hover {
+					color: #2CBD62;
+				}
+			}
+		}
+		span.description {
+			line-height: 100%;
+			font-size: 17px;
+			margin-left: 30px;
+			color: #424242;
+			span.name {
+				color: #1fbc5a;
+				font-family: cursive;
+			}
+		}
+	}
+}
+
+// 主体部分
+main {
+	&>section {
+		height: 600px;
+	}
+	section.left {
+		padding: 0 0 0 100px;
+		width: 35%;
+		background: #E6E6E6;
+		float: left;
+		.header.tips {
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			color: #000000;
+		}
+		.classification {
+			height: 40px;
+			line-height: 40px;
+			&:hover {
+				background: #F3F3F3;
+			}
+		}
+		.tasks.accordingto-types {
+			.tasks-group {
+				.single-task {
+					.icon-shanchu {
+						position: absolute;
+						right: 30px;
+						display: none;
+					}
+					&.hover {
+						.icon-shanchu {
+							display: inline;
+						}
+					}
+				}
+			}
+			.single-task {
+				position: relative;
+				height: 30px;
+				line-height: 30px;
+				&:hover {
+					background: #F5F5F5;
+					border: 1px solid #D6D6D6;
+					cursor: pointer;
+					border-radius: 2px;
+				}
+				&.clicked {
+					background: #F5F5F5;
+					border: 1px solid #D6D6D6;
+					cursor: pointer;
+					border-radius: 2px;
+				}
+				&.enter-task {
+					display: none;
+					line-height: 30px;
+					border-radius: 3px;
+					border: 2px solid #4DCA7C;
+					input[type="text"] {
+						border: 1px solid #F3F3F3;
+						outline: none;
+						border-radius: 4px;
+						height: 23px;
+						padding: 0;
+						float: left;
+						width: 180px;
+						margin: 1.6px 20px 1.6px 3px;
+					}
+				}
+				button {
+					/* padding: 4px; */
+					float: left;
+					/* line-height: 22px; */
+					height: 24px;
+					border: 1px solid #C1C1C1;
+					padding: 3px;
+					margin: 1px 0px 1px 20px;
+					background: #73C792;
+				}
+			}
+		}
+	}
+		//图标颜色
+		.icon-gongzuonan {
+			color: green;
+		}
+		.icon-xuexi {
+			color: #009ADC;
+		}
+		i.iconfont.icon-yule {
+			color: #FF4D00;
+		}
+		i.iconfont.icon-jiaotongiconplane {
+			color: #A2008A;
+		}
+	}
+
+	section.right {
+		overflow: hidden;
+		width: 65%;
+		background: rgba(217, 217, 217, 0.32);
+		float: left;
+		position: relative;
+		.task-items {
+			position: absolute;
+			left: -200px;
+			top: 0;
+			height: 270px;
+			width: 200px;
+			background: #1FBC5A;
+			border-top-right-radius: 8px;
+			border-bottom-right-radius: 8px;
+			header.task-type {
+				height: 30px;
+				line-height: 30px;
+				font-size: 20px;
+				text-align: center;
+				font-weight: 900;
+			}
+			li {
+				height: 22px;
+				list-style-type: none;
+				line-height: 22px;
+				cursor: pointer;
+				&:hover {
+					background: #F5F5F5;
+					border: 1px solid #D6D6D6;
+					cursor: pointer;
+					border-radius: 2px;
+				}
+				&.enter {
+					display: none;
+					text-align: center;
+					overflow: hidden;
+					border: none;
+					height: 50px;
+					background: #1FBC5A;
+					input {
+						outline: none;
+						border-radius: 2px;
+						border: none;
+						height: 23px;
+						font-size: 16px;
+						line-height: 23px;
+						padding: 0;
+					}
+				}
+			}
+		}
+		.detailed {
+			overflow: hidden;
+			header {
+				font-size: 20px;
+				text-align: center;
+				border-bottom: 2px solid gainsboro;
+				margin: 20px auto;
+				padding: 0 0 10px 0;
+			}
+		}
+	}
+
