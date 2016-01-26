@@ -15,7 +15,7 @@ function sendFile(response, filePath, fileContents) {
 	response.writeHead(
 		200,
 		{"Content-type": mime.lookup(path.basename(filePath))}
-	);
+		);
 	response.end(fileContents);
 }
 
@@ -53,9 +53,11 @@ var server = http.createServer(function(request, response){
 	if (request.url == "/") {
 		filePath = "/static/index.html";
 	} else {
-		filePath = request.url;  //js img html css
-	}
-	// 改变/blog/v2/v2.html 为blog/v2/v2.html 
+		filePath = request.url;  //  js/index.js 或者/js/index.js 这样 img html css
+			  // 使用相对路径而非绝对路径
+			  filePath = "/static/" + request.url; 
+			}
+	// 改变/blog/v2/v2.html 为blog/v2/v2.html  去掉/
 	var absPath = "" + filePath.substring(1);
 	serveStatic(response, cache, absPath);
 }).listen(3000);

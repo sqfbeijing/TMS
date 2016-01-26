@@ -58,7 +58,6 @@
 			</fieldset>
 		</form>
 	</div>
-
 	<script type="text/javascript" src="javascripts/jquery.min.js"></script>
 	<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
 	<script type="text/javascript">
@@ -76,7 +75,7 @@
 			}else if(password === password1){
 			var data = {"uname":username,"upwd":password};
 			$.ajax({ 
-				url: '/register',
+				url: '/views/register',
 				type: 'post',
 				data: data,
 				success: function(data,status){ 
