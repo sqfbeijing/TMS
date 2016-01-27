@@ -1,6 +1,12 @@
 body{
+	height: 100%;
+	background: #fafafa;
+	// overflow: hidden;
 	margin: 0; 
 	font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑","Microsoft YaHei", " 微软雅黑", SimSun, " 宋体", Heiti, " 黑体", sans-serif
+}
+footer {
+	height: 2100px;
 }
 *, *:before, *:after{
 	box-sizing: border-box;
@@ -19,34 +25,36 @@ a {
 	clear: both;
 }
 .iconfont.icon-icon-tasktodoist{
-	color: #1fbc5a;
+	color: white;
 }
 // header部分
 header.top-header {
-	background: rgba(0, 0, 0, 0.15);
+	background: #1DA951;
 	height: 45px;
+	// border-bottom: 1px solid #0053C5;
 	.icon-icon-tasktodoist {
 		font-size: 30px;
 		line-height: 45px;
 	}
 	nav {
+		width: 1000px;
+		margin: 0 auto;
 		.left, .right {
 			width: 50%;
 			height: 45px;
 		}
 		.left {
-			padding: 0 0 0 10%;
 			float: left;
 			width: 50%;
 		}
 		.right {
-			padding: 0 0 0 100px;
 			float: right;
+			text-align: right;
 			width: 50%;
 			a {
 				line-height: 45px;
 				margin: 0 0 0 30px;
-				color: #1DA951;
+				color: white;
 				&:hover {
 					color: #2CBD62;
 				}
@@ -56,9 +64,10 @@ header.top-header {
 			line-height: 100%;
 			font-size: 17px;
 			margin-left: 30px;
-			color: #424242;
+			color: white;
+			font-family: serif;
 			span.name {
-				color: #1fbc5a;
+				color: white;
 				font-family: cursive;
 			}
 		}
@@ -67,14 +76,19 @@ header.top-header {
 
 // 主体部分
 main {
+	background: #fafafa;
+	width: 1000px;
+	margin: 0 auto;
+	height: 550px;
+	overflow: hidden;
 	&>section {
-		height: 600px;
+		// height: 600px;
 	}
 	section.left {
-		padding: 0 0 0 100px;
-		width: 35%;
-		background: #E6E6E6;
+		height: 550px;
+		width: 330px;
 		float: left;
+		overflow: auto;
 		.header.tips {
 			height: 30px;
 			line-height: 30px;
@@ -164,9 +178,10 @@ main {
 	}
 
 	section.right {
-		overflow: hidden;
-		width: 65%;
-		background: rgba(217, 217, 217, 0.32);
+		overflow: auto;	
+		width: 670px;
+		height: 700px;
+		background: white;
 		float: left;
 		position: relative;
 		.task-items {
@@ -218,12 +233,79 @@ main {
 		.detailed {
 			overflow: hidden;
 			header {
-				font-size: 20px;
-				text-align: center;
-				border-bottom: 2px solid gainsboro;
-				margin: 20px auto;
-				padding: 0 0 10px 0;
+				font-size: 14px;
+				height: 37px;
+				line-height: 35px;
+				text-align: left;
+				border-bottom: 1px solid #1da951;
+				// margin: 0px auto 20px;
+				padding: 0 0 0px 40px;
+				.task-group-name {
+					color: blue;
+				}
+				.task-name {
+					color: red;
+				}
 			}
+			.settings {
+				height: 30px;
+				font-size: 12px;
+				line-height: 30px;
+				text-align: right;
+				padding-right: 20px;
+				span {
+					border: 1px solid #1da951;
+					padding: 1px;
+					background: #EAF1FF;
+					color: black;
+					cursor: pointer;
+					margin-right: 10px;
+					border-radius: 3px;
+				}
+			}
+			.write-wrapper {
+				overflow-y: auto;
+				height: 400px;
+			}
+			.write {
+				padding: 1em;
+				min-height: 400px;
+				background: rgb(243, 243, 243);
+				outline: none;
+			}
+		}
+	}
+	footer {
+		text-align: center;
+		height: 120px;
+		background: #1da951;
+		.footer-friendship-links {
+			padding-top: 20px;
+			font-size: 14px;
+			height: 60px;
+			line-height: 40px;
+			.title {
+				margin-right: 20px;
+				color: black;
+				font-weight: bold;
+			}
+			a {
+				margin-right: 20px;
+				color: white;
+			}
+		}
+		.footer-about-us {
+			height:60px;
+			line-height:60px;
+			a {
+				margin-right: 20px;
+			}
+		}
+		.footer-copyRight {
+			font-size: 14px;
+			padding-bottom: 20px;
+			height: 60px;
+			line-height: 40px;
 		}
 	}
 

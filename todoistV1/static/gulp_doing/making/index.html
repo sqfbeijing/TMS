@@ -108,23 +108,23 @@
         			工作
         		</header>
         		<ul>
-        				<div class="unfinished-tasks">
-        					        			<li>
-        				<i class="iconfont switch icon-yuanquan">
-        				</i>
-        				完成前端任务
-        			</li>
-        			<li>
-        				<i class="iconfont switch icon-yuanquan">
-        				</i>
-        				写完文档
-        			</li>
-        			<li>
-        				<i class="iconfont switch icon-yuanquan">
-        				</i>
-        				完成工作交接
-        			</li>
-        				</div>
+                    <div class="unfinished-tasks">
+                        <li>
+                            <i class="iconfont switch icon-yuanquan">
+                            </i>
+                            完成前端任务
+                        </li>
+                        <li>
+                            <i class="iconfont switch icon-yuanquan">
+                            </i>
+                            写完文档
+                        </li>
+                        <li>
+                            <i class="iconfont switch icon-yuanquan">
+                            </i>
+                            完成工作交接
+                        </li>
+                    </div>
 
                         <!-- <li>
                         <i class="iconfont icon-yuanquan"></i>
@@ -154,13 +154,45 @@
                 <!-- 详细写任务的白框 -->
                 <div class="detailed">
                 	<header>
-                		<!-- 完成前端任务 -->
+                		<span class="task-group-name">工作</span> > <span class="task-name">完成前端任务</span>
                 	</header>
-<!--                 	<textarea name="" id="" width="300" height="200" resizing="" placeholder="sq">
-                	</textarea> -->
+                    <div class="settings">  
+                        <span>保存</span>
+                        <span>取消</span>
+                    </div>
+                    <div class="write-wrapper">
+                        <div class="write" contenteditable="true">
+                            请在此处输入详细任务信息
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
+        <footer>
+            <div class="footer-friendship-links">
+                <span class="title">友情链接：</span>
+                <a href="#">todoist</a>
+                <a href="#">印象笔记</a>
+                <a href="#">知乎</a>
+                <a href="#">豆瓣</a>
+            </div>
+<!--             <div class="footer-about-us">
+                <a href="#">关于我们</a>
+                <a href="#">建议反馈</a>
+                <a href="#">商务合作</a>
+                <a href="#">加入我们</a>
+            </div> -->
+            <div class="footer-copyRight">
+                <span class="tms">© 2016 TMS</span>  
+                <a href="#">关于我们</a> -  
+                <a href="#">联系我们</a> -  
+                <a href="#">加入我们</a> -  
+                <a href="#">商业合作</a> -  
+                <a href="#">投诉建议</a> -  
+                <a href="#">免责声明</a>
+                <!-- 关于我们 - 广告合作 - 联系我们 - 免责声明 - 网站地图 - 投诉建议 - 在线投稿 -->
+            </div>
+        </footer>
         <!-- 处理离线存储 -->
         <script src="myLocalStorage.js">
         </script>
