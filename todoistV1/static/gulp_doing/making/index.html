@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<title>
-		Document
+		
 	</title>
 	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1450018119_0425067.css">
 	<link rel="stylesheet" href="common.css">
@@ -28,36 +27,37 @@
 				</span>
 			</div>
 			<div class="right">
-				<a href="#">
-					好友
-				</a>
-				<a href="#">
-					任务圈
-				</a>
-				<a href="#">
-					聊天
-				</a>
-				<a href="#">
-					设置
-				</a>
-			</div>
-		</nav>
-	</header>
-	<main class="clearfix">
-		<section class="left">
-			<div class="header tips">
-				您现在还有
-				<span class="number">
-					n
-				</span>
-				项任务
-			</div>
-			<div class="classification">
-				排列方式:
-				<select name="" id="">
-					<option value="21">
-						按任务类型排列
-					</option>
+                <a href="#" class="active">我的任务</a>
+                <a href="#">
+                   好友
+               </a>
+               <a href="taskCircle.html" target="_blank">
+                   任务圈
+               </a>
+               <a href="#">
+                   聊天
+               </a>
+               <a href="#">
+                   设置
+               </a>
+           </div>
+       </nav>
+   </header>
+   <main class="clearfix">
+      <section class="left">
+         <div class="header tips">
+            您现在还有
+            <span class="number">
+               n
+           </span>
+           项任务
+       </div>
+       <div class="classification">
+        排列方式:
+        <select name="" id="">
+           <option value="21">
+              按任务类型排列
+          </option>
 <!-- 					<option value="21">
 						按任务发布时间排列
 					</option> -->
@@ -175,6 +175,7 @@
                 <a href="#">印象笔记</a>
                 <a href="#">知乎</a>
                 <a href="#">豆瓣</a>
+                <a href="#">阿里云</a>
             </div>
 <!--             <div class="footer-about-us">
                 <a href="#">关于我们</a>
@@ -199,6 +200,13 @@
         <!--点击左侧任务则toggle右侧任务面板 -->
         <script src="dealTasks.js">
         </script>
-    </body>
+        <!-- 阻止关闭窗口 -->
+        <script>
+        // // 检测是否开启此提示窗的状态
+        // window.onbeforeunload = function(e) {
+        //     return "若在离线状态下,关于该窗口后,将无法进行localStorage的存储"
+        // };
+    </script>
+</body>
 
-    </html>
+</html>

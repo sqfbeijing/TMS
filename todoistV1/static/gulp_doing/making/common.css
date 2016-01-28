@@ -1,11 +1,9 @@
 body {
   height: 100%;
   background: #fafafa;
+  color: #303333;
   margin: 0;
   font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑", "Microsoft YaHei", " 微软雅黑", SimSun, " 宋体", Heiti, " 黑体", sans-serif;
-}
-footer {
-  height: 2100px;
 }
 *,
 *:before,
@@ -18,7 +16,7 @@ ul {
 }
 a {
   text-decoration: none;
-  color: black;
+  color: #303333;
 }
 .clearfix:after {
   content: "";
@@ -59,8 +57,13 @@ header.top-header nav .right a {
   margin: 0 0 0 30px;
   color: white;
 }
+header.top-header nav .right a.active {
+  color: #FFFFFF;
+  text-shadow: white 1px 1px 3px;
+}
 header.top-header nav .right a:hover {
-  color: #2CBD62;
+  color: #FFFFFF;
+  text-shadow: white 1px 1px 3px;
 }
 header.top-header nav span.description {
   line-height: 100%;
@@ -291,4 +294,78 @@ footer .footer-copyRight {
   padding-bottom: 20px;
   height: 60px;
   line-height: 40px;
+}
+.task-circle-main {
+  background: white;
+  width: 1000px;
+  margin: 0 auto;
+}
+.task-circle-main .header-description {
+  height: 50px;
+  /* font-weight: bold; */
+  font-size: 18px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #9A9A9A;
+  /* margin-bottom: 30px; */
+}
+.task-circle-main-annouce .single-annouce {
+  border-bottom: 1px solid #E0E0E0;
+  /* border-radius: 6px; */
+  width: 80%;
+  padding: 20px 0 20px 270px;
+  margin: 0 auto;
+}
+.task-circle-main-annouce .single-annouce .timing,
+.task-circle-main-annouce .single-annouce .prompt,
+.task-circle-main-annouce .single-annouce .go-see {
+  height: 30px;
+  line-height: 30px;
+}
+.task-circle-main-annouce .single-annouce .comments {
+  cursor: pointer;
+  position: relative;
+}
+.task-circle-main-annouce .single-annouce .timing {
+  font-size: 13px;
+  color: #6F6F6F;
+}
+.task-circle-main-annouce .single-annouce .prompt .username {
+  font-weight: bold;
+}
+.task-circle-main-annouce .single-annouce .prompt .task-action {
+  margin: 0 20px;
+}
+.task-circle-main-annouce .single-annouce .prompt .task-name {
+  font-weight: bold;
+  color: #00921C;
+}
+.task-circle-main-annouce .single-annouce .go-see a {
+  color: blue;
+}
+.task-circle-main-annouce .single-annouce .title {
+  color: red;
+}
+.annouce-comments-content {
+  list-style-type: none;
+  color: black;
+}
+.annouce-comments-content .single-comments-content {
+  line-height: 30px;
+  height: 30px;
+}
+.annouce-comments-content .single-comments-content.open-edit {
+  cursor: pointer;
+  width: 70px;
+  font-weight: 900;
+}
+.annouce-comments-content .single-comments-content.open-edit:hover {
+  text-decoration: underline;
+}
+.annouce-comments-content .single-comments-content.writing {
+  display: none;
+}
+.annouce-comments-content .single-comments-content .user-name {
+  color: blue;
+  cursor: pointer;
 }

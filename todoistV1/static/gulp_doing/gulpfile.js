@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 var csso = require('gulp-csso');
-var csscomb = require('gulp-csscomb');
+var csscomb = require('gulp-csscomb'); 
 
 // 编译less生成css
 gulp.task('gulp_less', function() {
