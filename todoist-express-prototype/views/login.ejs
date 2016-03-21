@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录页面</title>
+	<!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+	<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+	<h2>登录</h2>
+	<form>
+		账户名:<input type="text" name="username"><br><br>
+		密码: &nbsp;  &nbsp;<input type ="password" name="password"><br><br>
+		<button type="button" id="submit">提交</button>
+	</form>
+	<a href="/register.html">还没账号呢，我要注册</a>
+	<script>
+		$("#submit").click(function(event) {
+			/* Act on the event */
+			var userName = $("form input[name=username]").val();
+			var userPassword = $("form input[name=password]").val();
+			var $userNameInput = $("form input[name=username]");
+			var $userPasswordInput = $("form input[name=password]");
+
+			if ($.trim(userName) === "") {
+				alert("输入账户名为空！请重新输入！");
+				return;
+			}
+			if ($.trim(userPassword) === "") {
+				alert("输入密码为空！请重新输入！");
+				return;
+			}
+			var data = {"uname":userName,"upassword":userPassword};
+			$.ajax({ 
+				url:'/login.html',
+				type:'post',
+				data: data,
+				success: function(data){ 
+					if(data){ 
+						if (data == "wrongUser") {
+							alert("错误的用户名");
+						} else if (data == "wrongPassword") {
+							alert("错误的密码");
+						} else if (data == "correct") {
+							alert("登录成功！");
+							window.location = "/index.html";
+						}
+					} else {
+						alert("404  未返回数据");
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

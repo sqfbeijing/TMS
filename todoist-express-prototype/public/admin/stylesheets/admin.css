@@ -1,0 +1,220 @@
+.zhanwei {
+  height: 400px;
+}
+body {
+  color: #303333;
+  margin: 0;
+  overflow: hidden;
+  font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑", "Microsoft YaHei", " 微软雅黑", SimSun, " 宋体", Heiti, " 黑体", sans-serif;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.fontBold {
+  font-weight: bold;
+}
+.fontCenter {
+  text-align: center;
+}
+.fontLeft {
+  text-align: left;
+}
+.fontRight {
+  text-align: right;
+}
+.lineHeight30 {
+  line-height: 30px;
+}
+.lineHeight20 {
+  line-height: 20px;
+}
+.lineHeight25 {
+  line-height: 25px;
+}
+.iconfont-wrapper {
+  display: inline-block;
+  height: 100%;
+}
+.layoutCenter {
+  margin: 0 auto;
+}
+header.topbar {
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  text-align: center;
+  background: #0768CA;
+}
+header.topbar .content {
+  min-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px 0 50px ;
+  overflow: hidden;
+}
+header.topbar .content-title {
+  float: left;
+  font-size: 18px;
+  text-shadow: 2px 2px 15px black;
+}
+header.topbar .content-logout {
+  float: right;
+}
+header.topbar .content-logout .content-admin-name {
+  margin-right: 20px;
+  cursor: pointer;
+}
+header.topbar .content-logout a {
+  color: white;
+}
+header.topbar .content-logout a:hover {
+  text-decoration: underline;
+}
+.main-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fafafa;
+  overflow: hidden;
+}
+.main {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: black;
+}
+.main-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F1F1F1;
+  color: #006CDA;
+  width: 200px;
+  overflow-y: auto;
+}
+.main-menu .main-menu-singleMenu .menu-head {
+  color: #005AB5;
+  border-bottom: 1px solid #DADADA;
+  cursor: pointer;
+  height: 30px;
+  background: white;
+  padding-left: 40px;
+}
+.main-menu .main-menu-singleMenu .menu-head:hover {
+  background: white;
+}
+.main-menu .main-menu-singleMenu ul.menu-content {
+  list-style-type: none;
+  display: none;
+}
+.main-menu .main-menu-singleMenu li {
+  padding-left: 40px;
+  height: 25px;
+  cursor: pointer;
+}
+.main-menu .main-menu-singleMenu li .iconfont {
+  font-size: 12px;
+  font-weight: 100;
+}
+.main-menu .main-menu-singleMenu li.on {
+  background: #0768CA;
+  color: white;
+}
+.main-menu .main-menu-singleMenu li.on:hover {
+  background: #0768CA;
+}
+.main-menu .main-menu-singleMenu li:hover {
+  background: #3B95F1;
+  color: white;
+}
+.main-menu-title {
+  background: red;
+  color: black;
+  background: #CACACA;
+}
+.main-content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  background: #fafafa;
+  width: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.main-content {
+  min-width: 900px;
+}
+.main-content .main-content-head {
+  font-size: 20px;
+  text-align: center;
+  height: 30px;
+  border-bottom: 1px solid #D8D8D8;
+  margin-bottom: 20px;
+}
+.main-content-userInfo .pages {
+  height: 30px;
+}
+.main-content-userInfo .pages-pageNumber {
+  margin: 5px;
+  line-height: 18px;
+  border: 1px solid #e1e2e3;
+  color: #208BF7;
+  background: #FAFAFA;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+.main-content-userInfo .pages-pageNumber:hover {
+  border: 1px solid #208BF7;
+  background: #E6E6E6;
+}
+.main-content-userInfo .pages-pageNumber.on {
+  border: 1px solid #208BF7;
+  background: #E6E6E6;
+}
+.main-content-userInfo .main-userInfo-addAUser {
+  display: none;
+}
+.main-content-userInfo table {
+  margin: 0 auto;
+  min-width: 900px;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+.main-content-userInfo table td,
+.main-content-userInfo table th {
+  padding: 5px;
+  text-align: center;
+}
+.main-content-userInfo table button.delete {
+  outline: none;
+  cursor: pointer;
+  background: #208BF7;
+  border: 1px solid #e6e6e6;
+  color: white;
+  border-radius: 4px;
+  padding: 2px 12px;
+}
