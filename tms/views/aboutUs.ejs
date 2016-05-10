@@ -1,0 +1,143 @@
+<% include header.html %>
+
+<div class="aboutUs-bigContent">
+	<div class="content aboutUs tac">
+		<div class="content-title " id="aboutUs">
+			关于我们
+		</div>
+		<div class="content-desc tal">
+			
+			<p>
+				您所看到的网站(暂且这样称作	),是我大四时期的作品(毕业设计  \(^o^)/~  )，从前端到后端，均是我一个人完成。由于非生产环境，所以并未考虑浏览器兼容性，还请谅解(最好用chrome O(∩_∩)O~)。
+				此网站我从大四上学期开工，一直到大四结束完成，耗时半年，踩过的坑不少...(如：刚开始时我都是以前端开发的思维来考虑，导致后面功能出问题，前端只得推倒重来；最开始时使用localStorage本地离线存储，但是感觉用户体验不太好，而且较复杂，所以被我摒弃了；最开始时我想用原生nodejs来实现整个网站，但在我做完了登录注册之后发现的确太难，付出太多却进度太慢)。<br>
+
+
+			</p>
+			<p>
+				但是爬过这些坑之后我的收获也不少：<br>
+				1. 懂得软件开发过程中，应该以用户体验至上,渐渐向一个良好的产品靠齐；<br>
+				2. 软件开发的合理流程应该是: 需求分析 -> 原型 -> 设计 -> 开发 ->测试 ，而非先设计，再想功能；<br>	
+				3 4 5 ... <br>
+			</p>
+			<p>
+				本网站的风格主要是绿色+白色，您可以看到下方的友情链接，此网站的核心（任务管理系统）是借鉴todoist来的；
+				首页的左侧任务分类，借鉴了印象笔记mac版的笔记面板；登录注册部分是借鉴了知乎的登录注册；网站的绿色很想豆瓣网和印象笔记的官网，有没有发现?! 网站域名和云服务器都是采用的阿里云；在聊天室模块采用了socket.io的技术；在网站看到的字体小图标，均是iconfont；在网站的分页模块（后台管理部分）借鉴了淘宝的分页；
+				聊天室的头像和昵称，有参考QQmac版;我对以上的网站表示感谢，并对未列出的很多其他帮助过我的网站也表示衷心感谢。
+			</p>
+			<p>
+				本网站所用到的技术算是比较新的：<br>
+				前端主要是jQuery,html,css(可less编译);<br>
+				后端是nodejs,用了express框架,页面模板用的是ejs(个人感觉插入数据很方便);<br>
+				数据库用的是mongodb,nodejs与mongodb直接采用mongoose连接并操作<br>
+			</p>
+			<p>
+				上面列出了许多关于此网站的信息，但是并不能全部描述完，并且，此网站仍然有许多不足的地方，希望您能写在<a href="#toushu">投诉建议</a>里面，或者给我发邮件。我现在是北京某互联网公司的一名前端开发者，专注前端。<br>
+				若您对我<!-- (<b>想聘用我?</b>) -->或者我的网站感兴趣，请发送邮件到854413241@qq.com或者加我的<a href="#contactUs">微信</a>: sqf-bxkd <br>
+				我的github地址： <a href="https://github.com/sqfbeijing" target="_blank">点击这里</a><br>
+				<!-- 我的word简历： <a href="/docs/resume.docx" target="_blank">点击这里</a><br>	 -->
+			</p>
+
+		</div>
+	</div>
+	<div class="content commercial tac">
+		<div class="content-title " id="commercial">
+			商业合作
+		</div>
+		<div class="content-desc tal">
+			有关商业合作的事宜，请发送邮件到854413241@qq.com
+		</div>
+	</div>
+	<div class="content duty tac">
+		<div class="content-title " id="duty">
+			免责声明
+		</div>
+		<div class="content-desc tal">
+			用户在接受TMS服务之前，请务必仔细阅读本条款并同意本声明。<br>用户直接或通过各类方式（如站外API引用等）间接使用TMS服务和数据的行为，都将被视作已无条件接受本声明所涉全部内容；<br>	若用户对本声明的任何条款有异议，请停止使用TMS所提供的全部服务。
+		</div>
+	</div>
+	<div class="content joinUs tac">
+		<div class="content-title " id="joinUs">
+			加入我们
+		</div>
+		<div class="content-desc tal">
+			来和我们一起共创未来吧！ --- TMS
+		</div>
+	</div>
+	<div class="content toushu tac">
+		<div class="content-title " id="toushu">
+			投诉建议
+		</div>
+		<div class="content-desc tal">
+			<div class="writeHead">请在此写下您的投诉或者建议：</div>
+			<textarea class="writeInput" ></textarea>	
+			<div class="btns clearfix">
+				<div class="reset">重置</div>
+				<div class="commit">提交</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="content contactUs tac">
+		<div class="content-title " id="contactUs">
+			联系我们
+		</div>
+		<div class="content-desc tal">
+			<div class="way email">
+				给我们发邮件： 854413241@qq.com
+			</div>
+			<div class="way phone">
+				给我们打电话： 18811449125
+			</div>
+			<div class="way QQ">
+				给我们发QQ： 854413241
+			</div>
+			<div class="way weixin">
+				给我们发微信： sqf-bxkd
+				<img src="/images/myWeixin.png" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		var $adviceResetBtn = $(".toushu .btns .reset");
+		var $adviceCommitBtn = $(".toushu .btns .commit");
+	// 点击重置，则清空
+	$adviceResetBtn.click(function(event) {
+		$(this).parents(".content-desc").find('.writeInput').val("");
+	});
+	// 点击提交按钮
+	$adviceCommitBtn.click(function(event) {
+		var words = $.trim($(this).parents(".content-desc").find('.writeInput').val());
+
+		if (words === "") {
+			alert("输入不能为空！");
+			return;
+		}
+		if (words.length > 60) {
+			alert("文本过长！不能超过60个字符！");
+			return;
+		}
+		//执行
+		var time = Library.getTime();
+		var timeValue = Library.getTimeValue();
+
+		$.ajax({
+			url: '/userAdvice',
+			type: 'post',
+			data: {
+				time: time,
+				timeValue: timeValue,
+				content: words
+			},
+			success: function(res) {
+				if (res === "ok") {
+					alert("提交成功!");
+				}
+			}
+		});
+
+	});
+})
+</script>
+<% include footer.html %>

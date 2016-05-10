@@ -1,0 +1,265 @@
+<% include header.html %>
+<div class="myPageMain">
+	<div class="myPageMain-title">
+		我的主页
+	</div>
+	<div class="myPageMain-content">
+		<div class="myPageMain-content-item avatar">
+			<div class="myPageMain-content-item-name ">
+				我的头像
+			</div>
+			<div class="myPageMain-content-item-content clearfix ">
+				<!-- 存放图像的url,用于点击更新头像的时候判断，判断是否更新了新的 -->
+				<div class="preview fl" data-old-path="<%= data.avatar_url %>">
+					<img src="<%= data.avatar_url %>" alt="">
+					<button class="changeAvatar fileOpen cp">浏览</button>
+				</div>
+				<div class="edit fl">
+					<div class="prompt">
+						请选取一张正方形的图像，大于100*100
+					</div>
+					<button class="confirm">更新头像</button>
+					<input type="file" id="upImg" accept="image/*"><br>
+				</div>
+			</div>
+		</div>
+		<div class="myPageMain-content-item datas">
+			<div class="myPageMain-content-item-name ">
+				我的资料
+			</div>
+			<div class="myPageMain-content-item-content clearfix ">
+				<div class="dataEditCard clearfix" data-item-name="username">
+					<div class="dataEditCard-label fl">
+						账户名
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.username %></span>
+						<!-- 账户名不准修改 -->
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="nickname">
+					<div class="dataEditCard-label fl">
+						昵称
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.nickname %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<input type="text">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="sex">
+					<div class="dataEditCard-label fl">
+						性别
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.sex %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						男<input type="radio" value="男" name="Sex">
+						女<input type="radio" value="女" name="Sex">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="age">
+					<div class="dataEditCard-label fl">
+						年龄
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.age %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<input type="text">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="mobile_phone_number">
+					<div class="dataEditCard-label fl">
+						手机号码
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.mobile_phone_number %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<input type="text">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="email">
+					<div class="dataEditCard-label fl">
+						电子邮箱
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.email %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<input type="text">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix" data-item-name="live_place">
+					<div class="dataEditCard-label fl">
+						居住地
+					</div>
+					<div class="dataEditCard-staticContent fl">
+						<span class="content"><%= data.live_place %></span>
+						<button class="edit">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<input type="text">
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+				<div class="dataEditCard clearfix signature" data-item-name="signature">
+					<div class="dataEditCard-label fl">
+						个性签名
+					</div>
+					<div class="dataEditCard-staticContent fl clearfix">
+						<span class="fl content"><%= data.signature %></span>
+						<button class="edit fl">修改</button>
+					</div>
+					<div class="dataEditCard-editContent fl dn">
+						<textarea class=""></textarea>
+						<button class="save">保存</button>
+						<button class="cancel">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function() {
+		// 修改信息，(非图像) 发送ajax到后端
+		function updateUserData(dataName, dataContent){
+			var data = {
+				dataName: dataName,
+				dataContent: dataContent
+			};
+
+			$.ajax({
+				url: '/upload/updateUserData',
+				type: 'post',
+				data: data,
+				success: function(res){
+					if (!res) {
+						alert("ajax error");
+						return;
+					} else if (res === "ok") {
+						alert("资料提交成功！");
+					}
+				}
+			});
+		}
+
+		$(".fileOpen").click(function(event) {
+			$("#upImg").click();
+		});
+		$(".fileOpen").siblings("img").click(function(event) {
+			$("#upImg").click();
+		});
+		// 选取并预览图像
+		$("#upImg").on('change', function(event) {
+			// 传到后端
+			var formData = new FormData();
+
+			// 先将jq对象转化为dom对象,file是多选
+			// 文件对象
+			var img = $('#upImg').get(0).files[0];
+			// name为portrait
+			formData.append('portrait', img);
+			// 发送到后端,上传头像
+			$.ajax({
+				url: '/upload/avatar',
+				type: 'post',
+				data: formData,
+				processData: false, // 不处理发送的数据
+				contentType: false, // 不设置Content-Type请求头
+				success: function(res) {
+					if (!res) {
+						alert("ajax error");
+						return;
+					}
+					var path = res.path;
+
+					$(".myPageMain-content-item-content .preview img").attr('src', path);
+				}
+			});
+
+		});
+		// 点击更新头像（提交预览后的图像）
+		$(".myPageMain-content-item.avatar .edit .confirm").click(function(event) {
+			var src = $(this).parents(".myPageMain-content-item-content").find('.preview img').attr('src');
+			var oldPath = $(this).parents(".myPageMain-content-item-content").find('.preview').data("oldPath");
+			// 若头像没变化，则不更新
+			if (src === oldPath) {
+				alert("请先选取一张图片，再更新！");
+				return;
+			}
+			$.ajax({
+				url: '/upload/commitAvatar',
+				type: 'POST',
+				data: {
+					src: src
+				},
+				success: function(res) {
+					if (!res) {
+						alert("ajax失败！");
+						return;
+					}
+					console.log(res);
+					$(".myPageMain-content-item-content .preview img").attr('src', res.path);
+					$(".top-header .user img").attr('src', res.path);
+				}
+			});
+		});
+		// 点击修改资料，tab编辑框
+		$(".myPageMain-content-item-content .dataEditCard-staticContent .edit").click(function(event) {
+			$(this).parents(".dataEditCard-staticContent").hide().siblings('.dataEditCard-editContent').show();
+		});
+		// 点击修改资料的取消
+		$(".myPageMain-content-item-content .dataEditCard-editContent .cancel").click(function(event) {
+			$(this).parent().hide().siblings().show();
+		});
+		// 点击修改资料的确定
+		$(".myPageMain-content-item-content .dataEditCard-editContent .save").click(function(event) {
+			// 不是性别或者个性签名
+			if (!$(this).parents(".dataEditCard").hasClass('sex') && !$(this).parents(".dataEditCard").hasClass('signature')) {
+				// 获取input内容,渲染dom,发送到ajax
+				var text = $(this).parents(".dataEditCard-editContent").find('input').val();
+				$(this).parent().hide().siblings(".dataEditCard-staticContent").show().find('.content').text(text);
+			} else if ($(this).parents(".dataEditCard").hasClass('sex')) {
+				// 若是性别
+				var text = $(this).parents(".dataEditCard-editContent").find('input[type=radio]:checked').val();
+
+				$(this).parent().hide().siblings(".dataEditCard-staticContent").show().find('.content').text(text);
+			} else if ($(this).parents(".dataEditCard").hasClass('signature')) {
+				// 若是个性签名
+				var text = $(this).parents(".dataEditCard-editContent").find('textarea').val();
+
+				$(this).parent().hide().siblings(".dataEditCard-staticContent").show().find('.content').text(text);
+			}
+			// 最终发送到ajax
+			var dataName = $(this).parents(".dataEditCard").data('itemName');
+			var dataContent = $(this).parents(".dataEditCard").find('.dataEditCard-staticContent .content').text();
+			console.log(dataName + ".." + dataContent);	
+			updateUserData(dataName, dataContent);
+		});
+})
+</script>
+
+<!-- 嵌入footer -->
+<% include footer.html %>

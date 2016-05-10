@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录-注册</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1450018119_0425067.css">
+	<link rel="stylesheet" href="stylesheets/common.css">
+	<link rel="stylesheet" href="stylesheets/total.css">
+	<script src="http://cdn.bootcss.com/jquery/1.8.3/jquery.min.js">
+	</script>
+</head>
+<body class="signPage">
+	<div class="signMain-wrapper">
+		<div class="signMain tac">
+			<div class="title">
+				<div class="name  ">
+					TMS
+				</div>
+				<div class="des">
+					帮助您优美地解决事务
+				</div>
+			</div>
+			<div class="tabs">
+				<div class="tab-buttons clearfix">
+					<span class="tabButton signIn on">
+						登录
+					</span>			
+					<span class="tabButton signUp ">
+						注册
+					</span>
+				</div>
+				<div class="tabContents">
+					<div class="tabContent signIn on">
+						<div class="inputWrapper">
+							<div class="userName item">
+								<label for="username">账户名:</label>
+								<input type="text" class="username" name="username" id="username">
+							</div>
+							<div class="password item">
+								<label for="password">密码:</label>
+								<input type="password" id="password">
+							</div>
+						</div>
+						<div class="btn">
+							登录
+						</div>
+						<div class="remeber">
+							<input type="checkbox" id="remember">
+							<label for="remember">7天内记住我</label>
+						</div>
+					</div>
+					<div class="tabContent signUp ">
+						<div class="inputWrapper">
+							<div class="userName item">
+								<label for="regUsername">账户名:</label>
+								<input type="text" class="username" name="username" id="regUsername">
+							</div>
+							<div class="regPassword item">
+								<label for="regPassword">密码:</label>
+								<input type="password" id="regPassword">
+							</div>
+							<div class="regPassword item">
+								<label for="regPassword2">再次输入密码:</label>
+								<input type="password" id="regPassword2">
+							</div>
+						</div>
+						<div class="btn">
+							创建账户
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$(function(){
+		// 本页tab的切换
+		var $tabBtns = $(".tab-buttons .tabButton");
+		var $tabContents = $(".tabContents .tabContent");
+		var $signInBtn = $(".tabContents .tabContent.signIn .btn");
+		var $signUpBtn = $(".tabContents .tabContent.signUp .btn");
+
+		$tabBtns.click(function(event) {
+			$(this).addClass('on').siblings().removeClass('on');
+			var index = $(this).index();
+			$tabContents.eq(index).addClass('on').siblings().removeClass('on');
+		});
+		// 登录
+		$signInBtn.click(function(event) {
+			var userName = $(this).parents(".tabContent").find('.userName input').val();
+			var userPassword = $(this).parents(".tabContent").find('.password input').val();
+
+			if ($.trim(userName) === "") {
+				alert("输入账户名为空！请重新输入！");
+				return;
+			}
+			if ($.trim(userPassword) === "") {
+				alert("输入密码为空！请重新输入！");
+				return;
+			}
+			var data = {"uname":userName,"upassword":userPassword};
+			$.ajax({ 
+				url:'/login.html',
+				type:'post',
+				data: data,
+				success: function(data){ 
+					if(data){ 
+						if (data == "wrongUser") {
+							alert("错误的用户名");
+						} else if (data == "wrongPassword") {
+							alert("错误的密码");
+						} else if (data == "correct") {
+							window.location = "/index.html";
+						}
+					} else {
+						alert("404  未返回数据");
+					}
+				}
+			});
+		});
+		// 注册
+		$signUpBtn.click(function(event) {
+			var userName = $(this).parents(".tabContent").find('.userName input').val();
+			var userPassword = $(this).parents(".tabContent").find('.regPassword input:eq(0)').val();
+			var reUserPassword = $(this).parents(".tabContent").find('.regPassword input:eq(1)').val();
+
+			if ($.trim(userName) == "") {
+				alert("用户名不能为空！");
+				return;
+			} else if (userPassword !== reUserPassword) {
+				alert("两次输入的密码不一致！");
+				return;
+			}
+			$.ajax({
+				url: '/register.html',
+				type: 'POST',
+				// 预期服务器会返回纯文本
+				dataType: 'text',
+				data: {uname: userName, upassword: userPassword},
+				success: function (msg) {
+					// msg是服务器返回的数据
+					console.log(msg);
+					if (msg === "success") {
+						alert("注册成功！");
+						//显示登录窗口
+						$(".tab-buttons .signIn").addClass('on').siblings().removeClass('on');
+						$(".tabContent.signIn").addClass('on').siblings().removeClass('on');
+						$(".tabContent.signIn .userName input").focus();
+						return; 
+					} else if (msg === "isExistedUserName"){ 
+						alert("用户名已存在！请重新注册个账号！"); 
+						return;
+					}
+				}
+			})
+		});
+})
+</script>
+
+<% include footer.html %>

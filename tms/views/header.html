@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="shortcut icon" href="/images/favicon.ico" /> 
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1462787862_511772.css">
+    <link rel="stylesheet" href="stylesheets/common.css">
+    <!-- total.css里面有修改过的css代码，所以要放在common.css后面 -->
+    <link rel="stylesheet" href="stylesheets/total.css">
+    <script src="javascripts/jquery.js">
+    </script>
+</head>
+
+<body>
+    <header class="top-header clearfix">
+        <nav class="clearfix">
+            <div class="left clearfix">
+                <a href="/index.html" class="fl">
+                    <i class="iconfont icon-icon-tasktodoist">
+                    </i>
+                </a>
+                <span class="description fl clearfix">
+                    <span class="name">
+                        TMS
+                    </span>
+                    您的私人管家
+                </span>
+                <input type="text" placeholder="搜索您想查找的任务 如：明天要去看电影" class="fl clear searchInput">
+                <span class="fl searchBtn">
+                    <i class="iconfont icon-sousuo"></i>
+                </span>
+            </div>
+            <div class="right">
+                <a href="/" 
+                <% if(title === "首页") {  %>
+                class="active"
+                <% } %>
+                >我的任务</a>
+                <a href="/taskCircle.html"
+                <% if(title === "任务圈") {  %>
+                class="active"
+                <% } %>
+                >
+                任务圈
+            </a>
+            <a href="/chatRoom.html"
+            <% if(title === "聊天室") {  %>
+            class="active"
+            <% } %>
+            >
+            聊天室
+        </a>
+        <div class="user">
+            <div class="switch clearfix">
+                <img src="<%= avatar_url %>" alt="" class="fl">
+                <span class="userName active fl"><%= user.name %></span>
+            </div>
+            <ul class="tab dn">
+                <li class="myPage">
+                    我的主页
+                </li>
+                <li class="logoutBtn">
+                    退出
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>

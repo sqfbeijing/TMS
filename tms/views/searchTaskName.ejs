@@ -1,0 +1,52 @@
+<% include header.html %>
+<div class="taskNameSearchMain">
+   <% if (searchResult.length === 0) { %>
+   <div class="notFind">
+      <div class="sorry">
+         抱歉，未查询到这个任务信息！ 
+     </div>
+ </div>
+ <% }else { %> 
+ <div class="title fs20">
+  搜索结果：
+</div>
+<% searchResult.forEach(function(elem, index, arr) { %>
+<a href="
+/"><div class="singleTask">
+<div class="item clearfix">
+  <span class="detail-title">任务名称：</span>
+  <span class="taskName"><%= elem.taskName%></span>
+</div>
+<div class="item clearfix">
+  <span class="detail-title">任务详情：</span>
+
+  <span class="content">
+     <!-- 查看是否为空 -->
+     <% if (elem.content.match(/^\s*$/g)) { %>
+     暂无详情
+     <% } else { %>
+     <%= elem.content%>
+     <% } %>
+ </span>
+</div>
+<div class="item clearfix">
+  <span class="detail-title">是否完成：</span>
+
+  <span class="complete">
+     <% if (elem.complete) { %>
+     已完成
+     <% } else { %>
+     未完成
+     <% } %>
+ </span>
+</div>
+<div class="item clearfix">
+	<span class="detail-title">任务类型：</span>
+    <span class="typeName"><%= elem.typeName%></span>
+</div>
+</div></a>
+<% }); %>
+<% } %>
+</div>
+<!-- 嵌入footer -->
+<% include footer.html %>

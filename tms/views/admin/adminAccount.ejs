@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员账户-查看管理员账户</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
+	<link rel="stylesheet" href="stylesheets/admin.css">
+	<script src="/javascripts/jquery.js">
+	</script>
+	<script src="/admin/javascripts/admin.js"></script>
+</head>
+<body>
+	<header class="topbar">
+		<div class="content">
+			<a href="/admin">
+				<span class="content-title">
+					TMS 后台管理系统
+				</span>
+			</a>
+			<span class="content-logout">
+				<span class="content-admin-name">
+					<%= admin.name %>
+				</span>
+				<span class="logOutBtn cp">
+					退出
+				</span>
+			</span>
+		</div>
+	</header>
+	<div class="main">
+		<% include leftNav.html %>
+		<section class="main-content-wrapper">
+			<div class="main-content">
+				<div class="main-content-adminInfo">
+					<div class="main-content-head fontCenter lineHeight30">
+						用户账户信息
+					</div>
+					<table border="1">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>账户名</th>
+								<th>密码</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 若数量小于等于10个，则直接显示 -->
+							<% if (admins.length <= 10) { %>
+							<% admins.forEach(function(elem, index, array){ %>
+							<tr>
+								<td><%= index + 1 %></td>
+								<td class="adminName"><%= elem.name %></td>
+								<td><%= elem.password %></td>
+							</tr>
+							<% }) %>
+							<% } %>
+							<!-- 若数目大于10个，则分页显示对应页面的用户  如：显示第2页 则是数据库 10- 19 条-->
+							<!-- 若只有15条。则判断第二页的此条是否存在-->
+							<% if (admins.length > 10) { %>
+							<% var page = showPageNumber; %>
+							<% var start = 10 * (showPageNumber - 1); %>
+							<% for (var i = start; i < start + 10; i++) { %>
+							<% if (admins[i]) { %>
+							<tr>
+								<td><%= i + 1 %></td>
+								<td class="adminName"><%= admins[i].name %></td>
+								<td><%= admins[i].password %></td>
+							</tr>
+							<% } %>
+							<% } %>
+							<% } %>
+						</tbody>
+					</table>
+					<div class="pages fontCenter clearfix">
+						<!-- 若是19条，则2页 -->
+						<% var allAdminAmount = admins.length; %>
+						<% var maxPage = Math.ceil(allAdminAmount / 10); %>
+						<!-- <%= maxPage %> -->
+						<!-- 若不是第一页，则显示上一页按钮 -->
+						<span class="previous cp <% if (showPageNumber === 1) { %><%= "fade" %>
+							<% } %>">
+							<<上一页
+						</span>
+						<span class="pages-pageNumber on">
+							<%= showPageNumber %>
+						</span> 
+						<span class="nextPage cp <% if (showPageNumber === maxPage) { %><%= "fade" %>
+							<% } %>">下一页>></span>
+							<span class="total">共
+								<span class="totalNumber"><%= maxPage %></span> 页,
+							</span>
+							<span class="goto">
+								到第
+								<input type="text" value="1" class="tac">
+								页
+							</span>
+							<button class="confirm">确定</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script>
+			$(function() {
+				var $table = $(".main-content-adminInfo table");
+			// 点击页面数，则请求数据
+			$(".pages .pages-pageNumber").click(function(event) {
+				/* Act on the event */
+				var number = parseInt($(this).text());
+				var url = '/admin/adminAccount.html?page=' + number;
+				window.location.href = url;
+			});
+			// 点击前一页	，若可以去前一页，则去
+			$(".pages .previous").click(function(event) {
+				if ($(this).hasClass('fade')) {
+					return;
+				}
+				// 可以去
+				var page = parseInt($(this).parents(".pages").find('.pages-pageNumber').text()) - 1;
+
+				window.location.href = '/admin/adminAccount.html?page=' + page;
+			});
+			// 点击后一页	，若可以去后一页，则去
+			$(".pages .nextPage").click(function(event) {
+				if ($(this).hasClass('fade')) {
+					return;
+				}
+				// 可以去
+				var page = parseInt($(this).parents(".pages").find('.pages-pageNumber').text()) + 1;
+
+				window.location.href = '/admin/adminAccount.html?page=' + page;
+			});
+			// 点击分页的确定按钮
+			$(".pages  .confirm").click(function(event) {
+				// 获取去的页面
+				var page = $(this).parents(".pages").find('.goto input').val();
+
+				window.location.href = '/admin/adminAccount.html?page=' + page;
+			});
+		})
+</script>
+</body>
+</html>

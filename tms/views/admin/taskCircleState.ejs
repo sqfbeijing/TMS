@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务圈-查看状态</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
+	<link rel="stylesheet" href="stylesheets/admin.css">
+	<script src="/javascripts/jquery.js">
+	</script>
+	<script src="/admin/javascripts/admin.js"></script>
+</head>
+<body>
+	<header class="topbar">
+		<div class="content">
+			<a href="/admin">
+				<span class="content-title">
+					TMS 后台管理系统
+				</span>
+			</a>
+			<span class="content-logout">
+				<span class="content-admin-name">
+					<%= admin.name %>
+				</span>
+				<span class="logOutBtn cp">
+					退出
+				</span>
+			</span>
+		</div>
+	</header>
+	<div class="main">
+		<% include leftNav.html %>
+		<section class="main-content-wrapper">
+			<div class="main-content">
+				<div class="main-content-taskCircleStatesInfo">
+					<div class="main-content-head fontCenter lineHeight30">
+						任务圈状态信息
+					</div>
+					<table border="1">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>发布人</th>
+								<th>发布时间</th>
+								<th>动作</th>
+								<th>内容</th>
+								<th>评论数</th>
+								<th>删除状态</th>	
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 若数量小于等于10个，则直接显示 -->
+							<% if (states.length <= 10) { %>
+							<% states.forEach(function(elem, index, array){ %>
+							<tr data-state-id=<%= elem._id%>>
+								<td><%= index + 1 %></td>
+								<td class="userName"><%= elem.userName %></td>
+								<td><%= elem.time %></td>	
+								<td><%= elem.action %></td>	
+								<td><%= elem.taskName %></td>	
+								<td><%= elem.comments.length %></td>
+								<td><button class="delete">删除</button></td>	
+							</tr>
+							<% }) %>
+							<% } %>
+							<!-- 若数目大于10个，则分页显示对应页面的状态  如：显示第2页 则是数据库 10- 19 条-->
+							<!-- 若只有15条。则判断第二页的此条是否存在-->
+							<% if (states.length > 10) { %>
+							<% var page = showPageNumber; %>
+							<% var start = 10 * (showPageNumber - 1); %>
+							<% for (var i = start; i < start + 10; i++) { %>
+							<% if (states[i]) { %>
+							<tr data-state-id=<%= states[i]._id%>>
+								<td><%= i + 1 %></td>
+								<td class="userName"><%= states[i].userName %></td>
+								<td><%= states[i].time %></td>	
+								<td><%= states[i].action %></td>	
+								<td><%= states[i].taskName %></td>	
+								<td><%= states[i].comments.length %></td>
+								<td><button class="delete">删除</button></td>	
+							</tr>
+							<% } %>
+							<% } %>
+							<% } %>
+						</tbody>
+					</table>
+					<div class="pages fontCenter clearfix">
+						<!-- 若是19条，则2页 -->
+						<% var allStatesAmount = states.length; %>
+						<% var maxPage = Math.ceil(allStatesAmount / 10); %>
+						<!-- <%= maxPage %> -->
+						<!-- 若不是第一页，则显示上一页按钮 -->
+						<span class="previous cp <% if (showPageNumber === 1) { %><%= "fade" %>
+							<% } %>">
+							<<上一页
+						</span>
+
+						<span class="pages-pageNumber on "><%= showPageNumber %></span> 
+						<span class="nextPage cp <% if (showPageNumber === maxPage) { %><%= "fade" %>
+							<% } %>">下一页>></span>
+							<span class="total">共
+								<span class="totalNumber"><%= maxPage %></span> 页,
+							</span>
+							<span class="goto">
+								到第
+								<input type="text" value="1" class="tac">
+								页
+							</span>
+							<button class="confirm">确定</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script>
+			$(function() {
+				var $table = $(".main-content-taskCircleStatesInfo table");
+				var $deleteBtn = $(".main-content-taskCircleStatesInfo table button.delete");
+				// 点击页面数，则请求数据
+				$(".pages .pages-pageNumber").click(function(event) {
+					var number = parseInt($(this).text());
+					var url = '/admin/taskCircleState.html?page=' + number;
+					window.location.href = url;
+				});
+				// 点击前一页	，若可以去前一页，则去
+				$(".pages .previous").click(function(event) {
+					if ($(this).hasClass('fade')) {
+						return;
+					}
+					// 可以去
+					var page = parseInt($(this).parents(".pages").find('.pages-pageNumber').text()) - 1;
+
+					window.location.href = '/admin/taskCircleState.html?page=' + page;
+				});
+				// 点击后一页	，若可以去后一页，则去
+				$(".pages .nextPage").click(function(event) {
+					if ($(this).hasClass('fade')) {
+						return;
+					}
+					// 可以去
+					var page = parseInt($(this).parents(".pages").find('.pages-pageNumber').text()) + 1;
+
+					window.location.href = '/admin/taskCircleState.html?page=' + page;
+				});
+				// 点击分页的确定按钮
+				$(".pages  .confirm").click(function(event) {
+					// 获取去的页面
+					var page = $(this).parents(".pages").find('.goto input').val();
+
+					window.location.href = '/admin/taskCircleState.html?page=' + page;
+				});
+				// 点击删除按钮，则删除动态
+				$table.on('click', 'button.delete', function(event) {
+					var t = window.confirm("确认删除？");
+					if (t === false) {
+						return;
+					}
+					// 获得状态的id
+					var stateId = $(this).parents("tr").data('stateId');
+					console.log(stateId)
+						// 发送ajax
+					$.ajax({
+						url: '/admin/adminDeal/deleteAState',
+						type: 'post',
+						data: {
+							stateId: stateId
+						},
+						success: function(res) {
+							if (res === "ok") {
+								alert("删除成功！");
+							}
+						}
+					})
+
+				});
+			})
+</script>
+</body>
+</html>

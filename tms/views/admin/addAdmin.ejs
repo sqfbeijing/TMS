@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员账户-增加管理员账户</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
+	<link rel="stylesheet" href="stylesheets/admin.css">
+	<script src="/javascripts/jquery.js">
+	</script>
+	<script src="/admin/javascripts/admin.js"></script>
+</head>
+<body>
+	<header class="topbar">
+		<div class="content">
+			<a href="/admin">
+				<span class="content-title">
+					TMS 后台管理系统
+				</span>
+			</a>
+			<span class="content-logout">
+				<span class="content-admin-name">
+					<%= admin.name %>
+				</span>
+				<span class="logOutBtn cp">
+					退出
+				</span>
+			</span>
+		</div>
+	</header>
+	<div class="main">
+		<%include leftNav.html %>
+		<section class="main-content-wrapper">
+			<div class="main-content">
+				<div class="prompt">尊敬的管理员同学，请输入您想增加的管理员账号和密码：</div>
+				<div class="inputWrapper tac">
+					<div class="line  clear">
+						<label for="addAdminName">管理员账户名:</label>
+						<input type="text" id="addAdminName">
+					</div>
+					<div class="line clear">
+						<label for="addAdminPassword">管理员密码:</label>
+						<input type="text" id="addAdminPassword">
+					</div>
+					<div class="line clear">
+						<button class="confirm">确认增加</button>
+						<a href="/admin">
+							<button class="cancel">取消并返回</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script>
+		$(function(){
+			var $confirmBtn = $(".main-content .line .confirm");
+			// 点击确认增加
+			$confirmBtn.click(function(event) {
+				var adminName = $("#addAdminName").val();
+				var adminPassword = $("#addAdminPassword").val();
+
+				if ($.trim(adminName) === "") {
+					alert("用户账户名不能为空！");
+					return;
+				}
+				if ($.trim(adminPassword) === "") {
+					alert("用户密码不能为空！");
+					return;
+				}
+				$.ajax({
+					url: '/admin/adminDeal/addAdmin',
+					type: 'post',
+					data: {adminName: adminName, adminPassword: adminPassword},
+					success: function(res){
+						if (res === "ok") {
+							alert("添加成功！");
+						} else if (res === "existedAdmin") {
+							alert("添加失败！此账户名已存在！");
+						}
+					}
+				})	
+			});
+		})
+	</script>
+</body>
+</html>

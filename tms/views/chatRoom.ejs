@@ -1,0 +1,88 @@
+<% include header.html %>
+<!-- 聊天室 -->
+<div class="chat">
+	<div class="chat-title">TMS公共聊天室</div>
+	<div class="chat-content">
+		<ul class="list">
+			
+		</ul>
+	</div>
+	<div class="chat-send tac">
+		<input type="text" class="input">
+		<button class="sendBtn">发送</button>
+	</div>
+</div>
+<script>
+	$(function(){
+		// 一进来则聚焦对话框
+		$(".chat-send .input").focus();
+	})
+</script>
+<!--此处引用socket浏览器端-->
+<script src="/javascripts/chatRoom/socket.io.js"></script>
+<script>
+	var socket = io();
+	var $sendBtn = $(".chat-send .sendBtn");
+	var $list = $(".chat-content .list");
+	var $input = $(".chat-send .input");
+
+	$sendBtn.click(function(event) {
+		var text = $(this).parents(".chat-send").find('.input').val();
+		if ($.trim(text) === "") {
+			alert("输入不能为空！");
+			return;
+		}
+		// 产生message事件
+		socket.emit("message", text);
+		// 发送完之后，Input为空
+		$(this).parents(".chat-send").find('.input').val("");
+	});
+	// enter键触发发送事件
+	$input.keydown(function(event) {
+		if (event.which !== 13) {
+			return;
+		}
+		$sendBtn.click();
+	});
+	// 客户端监听到来自服务端的聊天事件
+	socket.on("message", function(data) {
+		console.log(data);
+		var name = data.personName;
+		var msg = data.msg;
+		var time = data.time;
+		var avatar_url = data.personAvatar;
+		console.log(avatar_url);
+		// 修改dom
+		$list.append("<li class='msg clearfix'><span class='name fl'>" 
+			+ '<span class="userName">' + name + '</span>'
+			+ '<img src=' + avatar_url + ' alt="" class="avatar" />'
+			+ "</span><span class='words fl'>" 
+			+ msg 
+			+ "</span><span class='time fl'>"
+			+ time
+			+"</span></li>");
+		// 滚动条到最底部
+		$(".chat-content").scrollTop($(".chat-content")[0].scrollHeight);
+	});
+	// 有人加入聊天室
+	socket.on("join", function(data) {
+		// alert("join");
+		var personName = data.personName;
+		// 修改dom
+		$list.append("<li class='join prompt clearfix'><span class='name fl'>" + personName + "</span><span class='fl joinMsg'>加入了聊天室</span></li>");
+		// 滚动条到最底部
+		$(".chat-content").scrollTop($(".chat-content")[0].scrollHeight);
+	});
+
+	// 有人离开聊天室
+	socket.on("leave", function(data) {
+		// alert("join");
+		var personName = data.personName;
+		// 修改dom
+		$list.append("<li class='leave prompt clearfix'><span class='name fl'>" + personName + "</span><span class='fl leaveMsg'>离开了聊天室</span></li>");
+		// 滚动条到最底部
+		$(".chat-content").scrollTop($(".chat-content")[0].scrollHeight);
+	});
+</script>
+<!-- 嵌入footer -->
+<% include footer.html %>

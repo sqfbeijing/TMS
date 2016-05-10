@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="/admin/stylesheets/admin.css">
+	<script src="/javascripts/jquery.js">
+	</script>
+</head>
+<body>
+	<header class="topbar">
+		<div class="content">
+			<span class="content-title">
+				TMS 后台管理系统
+			</span>
+		</div>
+	</header>
+	<div class="loginMain tac">
+		<div class="login">
+			<div class="inputWrapper">
+				<div class="item clearfix">
+					<label for="userName">账户名:</label>
+					<input type="text" id="userName">
+				</div>
+				<div class="item clearfix">
+					<label for="password">密码:</label>
+					<input type="password" id="password">
+				</div>
+			</div>
+			<div class="loginBtn">
+				登录
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+		var $signInBtn = $(".loginMain .login .loginBtn");
+		// 登录
+		$signInBtn.click(function(event) {
+			var userName = $(this).parents(".login").find('.item #userName').val();
+			var userPassword = $(this).parents(".login").find('.item #password').val();
+
+			if ($.trim(userName) === "") {
+				alert("输入账户名为空！请重新输入！");
+				return;
+			}
+			if ($.trim(userPassword) === "") {
+				alert("输入密码为空！请重新输入！");
+				return;
+			}
+			var data = {"uname":userName,"upassword":userPassword};
+			$.ajax({ 
+				url:'/admin/login.html',
+				type:'post',
+				data: data,
+				success: function(data){ 
+					if(data){ 
+						if (data == "wrongUser") {
+							alert("错误的用户名");
+						} else if (data == "wrongPassword") {
+							alert("错误的密码");
+						} else if (data == "correct") {
+							window.location = "/admin";
+						}
+					} else {
+						alert("404  未返回数据");
+					}
+				}
+			});
+		});
+	})
+	</script>
+</body>
+</html>

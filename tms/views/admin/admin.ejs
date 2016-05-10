@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
+	<link rel="stylesheet" href="stylesheets/admin.css">
+	<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.js">
+	</script>
+	<script src="/admin/javascripts/admin.js"></script>
+	<style>
+		.main-content {
+			margin-top: 250px;
+		}
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<div class="content">
+			<a href="/admin">
+				<span class="content-title">
+					TMS 后台管理系统
+				</span>
+			</a>
+			<span class="content-logout">
+				<span class="content-admin-name">
+					<%= admin.name %>
+				</span>
+				<span class="logOutBtn cp">
+					退出
+				</span>
+			</span>
+		</div>
+	</header>
+	<div class="main">
+		<!-- 添加左侧导航 -->
+		<% include leftNav.html%> 
+		<section class="main-content-wrapper">
+			<div class="main-content fs25 tac">
+				欢迎来到TMS 后台管理系统！
+			</div>
+		</section>
+	</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>用户账户-查看详细资料</title>
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
+		<link rel="stylesheet" href="stylesheets/admin.css">
+		<script src="/javascripts/jquery.js">
+		</script>
+		<script src="/admin/javascripts/admin.js"></script>
+	</head>
+	<body>
+		<header class="topbar">
+			<div class="content">
+				<a href="/admin">
+					<span class="content-title">
+						TMS 后台管理系统
+					</span>
+				</a>
+				<span class="content-logout">
+					<span class="content-admin-name">
+						<%= admin.name %>
+					</span>
+					<span class="logOutBtn cp">
+						退出
+					</span>
+				</span>
+			</div>
+		</header>
+		<div class="main">
+			<%include leftNav.html %>
+			<section class="main-content-wrapper">
+				<div class="main-content">
+					<!-- 用户详细资料 -->
+					<div class="main-content-userdata">
+						<div class="main-content-head fontCenter lineHeight30">
+							用户详细资料
+						</div>
+						<div class="items clearfix">
+							<div class="item username clearfix">
+								<div class="fl title">
+									账户名：
+								</div>
+								<div class="fl detail">
+									<% if (userData.username) { %>
+									<%= userData.username%>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item nickname clearfix">
+								<div class="fl title">
+									昵称：
+								</div>
+								<div class="fl detail">
+									<% if (userData.nickname) { %>
+									<%= userData.nickname%>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item avatar clearfix">
+								<div class="fl title">
+									头像：
+								</div>
+								<div class="fl detail">
+									<% if (userData.avatar_url){ %>
+									<img src="<%= userData.avatar_url %>" alt="">
+									<% } %>
+
+
+								</div>
+							</div>
+							<div class="item sex clearfix">
+								<div class="fl title">
+									性别：
+								</div>
+								<div class="fl detail">
+									<% if (userData.sex) { %>
+									<%= userData.sex %>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item age clearfix">
+								<div class="fl title">
+									年龄：
+								</div>
+								<div class="fl detail">
+									<% if (userData.age) { %>
+									<%= userData.age%>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item phonenumber clearfix">
+								<div class="fl title">
+									电话号码：
+								</div>
+								<div class="fl detail">
+									<% if (userData.mobile_phone_number) { %>
+									<%= userData.mobile_phone_number%>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item email clearfix">
+								<div class="fl title">
+									电子邮箱：
+								</div>
+								<div class="fl detail">
+									<% if (userData.email) { %>
+									<%= userData.email%>
+									<% } %>
+
+								</div>
+							</div>
+
+							<div class="item live-place clearfix">
+								<div class="fl title">
+									出生地：
+								</div>
+								<div class="fl detail">
+									<% if (userData.live_place) { %>
+									<%= userData.live_place%>
+									<% } %>
+
+								</div>
+							</div>
+							<div class="item signature clearfix">
+								<div class="fl title">
+									个性签名：
+								</div>
+								<div class="fl detail">
+									<% if (userData.signature) { %>
+									<%= userData.signature%>
+									<% } %>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+	</html>

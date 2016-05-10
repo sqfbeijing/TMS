@@ -1,0 +1,190 @@
+<% include header.html %>
+<div class="task-circle-main">
+	<header class="header-description">
+		所有人的任务状态
+	</header>
+	<div class="task-circle-main-annouce">
+		<!-- task_states数组的渲染 -->
+		<!-- 最新的放在上面 所以不用forEach方法-->
+		<% var length = task_states.length; %>
+
+		<% for (var i = length-1; i >= 0; i--) { %>
+		<div class="single-annouce" data-state-id=<%= task_states[i]._id %>>
+			<div class="timing"><%= task_states[i].time %></div>
+			<div class="prompt">
+				<span class="username"><%= task_states[i].userName %></span>
+				<span class="task-action"><%= task_states[i].action %></span> 
+				<span class="task-name"><%= task_states[i].taskName %></span>
+				!
+			</div>
+			<div class="single-annouce-options">
+				<span class="options-commentSwitch cp">
+					<i class="iconfont icon-pinglun"></i>
+				</span>
+				<span class="options-commentNumber "><%= task_states[i].commentCount %></span>
+			</div>
+			<ul class="annouce-comments-content">
+				<div class="close">
+					<i class="iconfont icon-guanbi"></i>
+				</div>
+				<li class="single-comments-content writing">
+					<input type="text">
+					<button class="confirm">评论</button>
+				</li>
+				<% task_states[i].comments.forEach(function(elem, index, array){ %>
+				<li class="single-comments-content" data-comment-id=<%= elem._id %>>
+					<span class="user-name"><%= elem.speakUserName %></span> 说：<span><%= elem.content %></span>
+					<button class="commentsReplyBtn">
+						回复
+					</button>
+					<div class="commentsReply">
+						<% elem.reply.forEach(function(reply, index, array){ %>
+						<div class="singleReply">
+							<span class="user-name user-name1"><%= reply.speakUserName %></span>
+							回复 @<span class="user-name user-name2"><%= elem.speakUserName %></span>:
+							<span class="contents"><%= reply.content %></span>
+						</div>
+						<% }); %>
+						<div class="singleReply myReply">
+							我要回复：
+							<input type="text" class="myReplyInput">
+							<button class="myReplyConfirmBtn">确认</button>
+							<button class="myReplyCancelBtn">取消</button>
+						</div>
+					</div>
+				</li>
+				<% }); %>
+
+			</ul>
+		</div>
+		<% } %>
+	</div>
+</div>
+<!-- 前端评论的处理 -->
+<script>
+	// 此方法返回一个当前日期的对象
+	function getTimeAndValue() {
+		var obj = {};
+		// 时间
+		var tempDate = new Date();
+		obj.y = tempDate.getFullYear();
+		obj.mon = tempDate.getMonth() + 1;
+		obj.d = tempDate.getDate();
+		obj.h = tempDate.getHours();
+		obj.min = tempDate.getMinutes();
+		obj.s = tempDate.getSeconds();
+		obj.time = obj.y + "年" + obj.mon + "月" + obj.d + "日" + obj.h + "时" + obj.min + "分" + obj.s + "秒";
+		obj.timeValue = tempDate.getTime();
+		return obj;
+	}
+	$(function() {
+		var $edit_open_buttons = $(".single-comments-content.open-edit");
+		var $writing_cancel_buttons = $(".single-comments-content.writing .cancel");
+		var $writing_confirm_buttons = $(".single-comments-content.writing .confirm");
+
+		// 点击我要评论，出现评论框
+		$edit_open_buttons.click(function(event) {
+			$(this)
+				.parent()
+				.find('.writing').slideDown('400', function() {
+					$(this).siblings('.open-edit').text("评论中...");
+				});
+		});
+		// 点击评论的取消，还原
+		$writing_cancel_buttons.click(function(event) {
+			$(this).parent().hide()
+				.siblings('.open-edit').text("我要评论");
+		});
+		// 点击评论按钮，append到系统上，然后ajax
+		$writing_confirm_buttons.click(function(event) {
+			var commentWords = $(this).siblings('input').val();
+			if ($.trim(commentWords) === "") {
+				alert("输入不能为空！");
+				return;
+			}
+			// 生成新的一条评论并且append到原来的评论里面
+			var $newComment = $('<li class="single-comments-content"><span class="user-name">我</span> 说：<span>' + commentWords +
+				'</span><button class="commentsReplyBtn">回复</button><button class="commentsReplyHideBtn">收起回复</button>' +
+				'<div class="commentsReply"><div class="singleReply myReply">我要回复：' +
+				'<input type="text" class="myReplyInput">' +
+				'<button class="myReplyConfirmBtn">确认</button>' +
+				'<button class="myReplyCancelBtn">取消</button>' +
+				'</div>' +
+				'</div>' +
+				'</li>');
+			$newComment.insertAfter($(this).parent());
+			// 定义数据
+			var stateId = $(this).parents(".single-annouce").data("stateId");
+			// console.log(stateId)
+			var time = getTimeAndValue().time;
+			var timeValue = getTimeAndValue().timeValue;
+			var obj = {
+				time: time,
+				timeValue: timeValue,
+				content: commentWords,
+				stateId: stateId
+			};
+			//ajax传输评论到后端
+			$.ajax({
+				url: '/taskCircleDeal/addAComment',
+				type: 'post',
+				data: obj,
+				success: function(res) {
+					if (res === "ok") {
+						console.log("传输评论到后端成功")
+					}
+				}
+			});
+		});
+		/*任务圈的状态的评论部分*/
+		$(".single-annouce").on('click', '.options-commentSwitch', function(event) {
+			// 显示评论
+			$(this).parents(".single-annouce").find('.annouce-comments-content').addClass('on');
+		});
+
+		// 点击回复，则出现我要回复模块
+		$(".single-annouce").on('click', '.commentsReplyBtn', function(event) {
+			// 显示此条评论的我要回复模块
+			$(this).parents(".single-comments-content").find('.commentsReply .myReply').addClass('on');
+		});
+		// 点击取消回复，则隐藏我要回复模块
+		$(".single-annouce").on('click', '.singleReply .myReplyCancelBtn', function(event) {
+			// 显示此条评论的我要回复模块
+			$(this).parents(".myReply").removeClass('on');
+		});
+		// 点击回复的确认，发送到后端
+		$(".single-annouce").on('click', '.myReplyConfirmBtn', function(event) {
+			var obj = {};
+			obj.content = $(this).parents(".myReply").find('.myReplyInput').val();
+			obj.time = getTimeAndValue().time;
+			obj.timeValue = getTimeAndValue().timeValue;
+			obj.stateId = $(this).parents(".single-annouce").data("stateId");
+			obj.commentId = $(this).parents(".single-comments-content").data("commentId");
+			//ajax传输评论到后端
+			$.ajax({
+				url: '/taskCircleDeal/addAReply',
+				type: 'post',
+				data: obj,
+				success: function(res) {
+					if (res === "ok") {
+						console.log("传输回复到后端成功")
+					}
+				}
+			});
+			// 将新的dom插入
+			var $commentsReply = $(this).parents(".commentsReply");
+			var $myReply = $(this).parents(".commentsReply").find('.myReply');
+
+			var $temp = $('<div class="singleReply"><span class="username">我</span>回复：<span class="contents">' + obj.content +
+				'</span></div>');
+			$temp.insertBefore($myReply);
+		});
+
+		// 点击叉叉，关闭评论的显示
+		$(".single-annouce").on('click', '.annouce-comments-content .close .iconfont.icon-guanbi', function(event) {
+			$(this).parents(".annouce-comments-content").removeClass('on');
+		});
+	})
+</script>
+<!-- 嵌入footer -->
+<% include footer.html %>

@@ -1,0 +1,165 @@
+/*此文件存放前台所有的单个页面对应的css*//***任务圈***//*任务圈的状态的评论部分*/.annouce-comments-content {display:none;border:1px solid #E6E6E6;}
+.annouce-comments-content.on {display:block;}
+/*任务圈的状态的评论部分的回复部分*/.single-comments-content .commentsReply .myReply {display:none;}
+.single-comments-content .commentsReply  .myReply.on {display:block;}
+.task-circle-main {background:white;width:1000px;margin:0 auto;}
+.task-circle-main .header-description {height:50px;font-size:18px;line-height:50px;text-align:center;border-bottom:1px solid #9A9A9A;}
+.task-circle-main-annouce .single-annouce {border-bottom:1px solid #E0E0E0;width:80%;padding:20px 0 20px 270px;margin:0 auto;}
+.task-circle-main-annouce .single-annouce .timing,.task-circle-main-annouce .single-annouce .prompt,.task-circle-main-annouce .single-annouce .go-see {height:30px;line-height:30px;}
+.task-circle-main-annouce .single-annouce .comments {cursor:pointer;position:relative;}
+.task-circle-main-annouce .single-annouce .timing {font-size:13px;color:#6F6F6F;}
+.task-circle-main-annouce .single-annouce .prompt .username {font-weight:bold;}
+.task-circle-main-annouce .single-annouce .prompt .task-action {margin:0 20px;}
+.task-circle-main-annouce .single-annouce .prompt .task-name {font-weight:bold;color:#00921C;}
+.task-circle-main-annouce .single-annouce .go-see a {color:blue;}
+.task-circle-main-annouce .single-annouce .title {color:red;}
+.annouce-comments-content {list-style-type:none;color:black;}
+.annouce-comments-content .single-comments-content {line-height:30px;}
+.annouce-comments-content .single-comments-content.open-edit {cursor:pointer;width:70px;font-weight:900;}
+.annouce-comments-content .single-comments-content.open-edit:hover {text-decoration:underline;}
+.annouce-comments-content .single-comments-content.writing {}
+.annouce-comments-content .single-comments-content .user-name {color:blue;cursor:pointer;}
+/*** 任务页面 ***/.main {width:100%;min-width:1000px;height:100%;min-height:600px;position: relative;}
+/*任务块*/.main .task-wrapper {z-index:2;display:none;position:absolute;left:310px;border:1px solid #FDFDFD;height:400px;width:230px;background:#1DA951;border-radius:5px;overflow:auto;}
+.main .task-wrapper.on {display:block;}
+.main .task-wrapper button {padding:1px 9px 1px 9px;border-radius:6px;background:white;border:1px solid #1DA951;}
+.main .task-wrapper .task-panel .title {line-height:29px;text-align:center;font-size:16px;color:white;font-weight:900;border-bottom:1px solid #00792D;}
+/*任务详情块*/.main .taskContentView {line-height:25px;position:absolute;right:0;top:0;bottom:0;left:310px;text-align:center;font-size:19px;}
+.main .taskContentView button {background:#1DA951;border:none;padding:2px 11px;border-radius:2px;color:white;line-height:18px;}
+.main .taskContentView .closeView {float:left;margin-top:2px;}
+.main .taskContentView .typeNameTitle {margin-top:26px;padding-left:20px;text-align:left;border-top:1px solid #717171;}
+.main .taskContentView .typeName {padding-left:20px;text-align:left;border-top:1px solid #717171;font-weight:900;}
+.main .taskContentView .taskNameTitle {padding-left:20px;text-align:left;border-top:1px solid #717171;}
+.main .taskContentView .taskName {padding-left:20px;text-align:left;border-top:1px solid #717171;border-bottom:1px solid #717171;font-weight:900;}
+.main .taskContentView  .edit {float:left;margin:2px;}
+.main .taskContentView  .view-content {clear:both;border:1px solid #1DA951;margin:10px auto;width:600px;padding:20px;text-align:left;height:250px;border-radius:13px;overflow:auto;}
+.main .taskContentView  .edit-content {clear:both;}
+.main .taskContentView  .edit-content textarea {width:600px;height:250px;border:1px solid #1DA951;resize:none;margin:10px 0 0 0;overflow:auto;clear:both;font-size:15px;padding:10px;}
+.main .taskContentView  .edit-content textarea:focus {box-shadow:0 0 6px rgb(18,144,65);border:none;}
+/*欢迎块*/.main .welcomeWords {position:absolute;text-align:center;left:310px;right:0;padding-top:160px;float:none;font-size:19px;}
+.main .taskTypes {float:left;height:100%;width:310px;overflow:auto;border-right:1px solid #C5C5C5;a}
+.main .taskTypes button {padding:1px 9px 1px 9px;border-radius:6px;background:#1DA951;border:none;color:white;cursor:pointer;}
+.main .taskTypes  .addType .addBtn {
+	    padding: 0px 30px;
+    margin-left: 15px;
+    line-height: 26px;
+}
+.main .taskTypes .title {line-height:29px;text-align:center;font-size:16px;}
+.main .taskTypes .addType {border:1px solid #1DA951;border-right:none;border-left:none;line-height:60px;}
+.main .taskTypes .addType .typeText {line-height:20px;width:142px;margin:0 10px;}
+.main .taskTypes li {padding:10px 0 10px 0;border:1px solid #1DA951;border-bottom:none;border-right:none;border-left:none;}
+.main .taskTypes li span.name {display:inline-block;width:153px;margin-left:10px;font-size: 16px;}
+.main .taskTypes li .modifyBlock {display:block;line-height:30px; margin-top: 6px;}
+/*.main .taskTypes li .modifyBlock input[type=text] {width:110px;line-height:20px;margin-left:10px;}*/
+.main .taskTypes li .modifyBlock input[type=text] {
+    width: 151px;
+    line-height: 20px;
+    margin-left: 10px;
+    margin-right: 50px;
+}
+.main .taskTypes li .modifyBlock.dn {display:none;}
+.task-wrapper {float:left;}
+.task-panel {display:none;}
+.task-panel.on {display:block;}
+.task-panel li {line-height:30px;border-bottom:1px solid #006D28;}
+.task-panel li .taskName {display:block;width:100%;color:white;line-height:20px;padding-left:5px;}
+.task-panel .addBlock {border-bottom:1px solid #006D28;line-height:30px;}
+.task-panel .completedTasks {line-height:30px;border-bottom:1px solid #00792D;}
+.task-panel .completedTasks .items li {border-top:1px solid #00792D;border-bottom:none;}
+.trashContent {display:none;}
+.trashContent.on {display:block;}
+.completedTasks .items {display:none;}
+.completedTasks .items.on {display:block;}
+/*搜索任务页面*/.taskNameSearchMain {text-align:center;margin:40px auto;min-height:700px;}
+.taskNameSearchMain .title {margin-bottom:20px;color:#1DA951;}
+.taskNameSearchMain .notFind .sorry {color:#1DA951;font-size:20px;margin-top:240px;text-align:center;}
+.taskNameSearchMain .singleTask {width:540px;margin:0 auto;text-align:left;font-size:16px;line-height:25px;box-shadow:0 0 13px #D8D8D8;border-radius:3px;padding:20px;margin-bottom:40px;}
+.taskNameSearchMain .singleTask .item .detail-title {font-weight:900;color:#1DA951;}
+.taskNameSearchMain .singleTask:hover {box-shadow:0 0 13px #A7A7A7;}
+/*** 登录注册页 sign.html ***/.signMain-wrapper {overflow:hidden;height:80%;min-height:550px;}
+.signPage footer {text-align:center;min-height:120px;height:20%;background:#1da951;}
+.signMain {margin:0 auto;width:1000px;}
+.signMain .title .name {font-family:cursive;font-size:75px;color:rgb(0,177,66);}
+.signMain .title .des {font-family:serif;font-size:18px;line-height:55px;font-style:normal;}
+.signMain .tabs {width:300px;margin:30px auto 0;text-align:center;}
+.signMain .tab-buttons {color:#6F6F6F;font-size:20px;font-family:'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;}
+.signMain .tab-buttons .tabButton {cursor:pointer;}
+.signMain .tab-buttons .tabButton:nth-of-type(1) {margin-right:20px;}
+.signMain .tab-buttons .tabButton.on {color:rgb(0,158,59);border-bottom:3px solid rgb(0,158,59);}
+.signMain .tabContent {margin-top:40px;display:none;}
+.signMain .tabContent input:focus {box-shadow:0 0 10px #D8D8D8;}
+.signMain .tabContent.on {display:block;}
+.signMain .tabContent .inputWrapper {border:1px solid #D8D8D8;border-radius:4px;}
+.signMain .tabContent .item {margin-top:10px;padding-bottom:10px;border-bottom:1px solid #D8D8D8;line-height:30px;}
+.signMain .tabContent .item:nth-last-of-type(1) {border-bottom:none;}
+.signMain .tabContent .item label {float:left;text-align:left;width:110px;font-size:16px;margin-left:20px;}
+.signMain .tabContent .item input {font-size:14px;height:28px;padding:0 0 0 10px;margin:0;border-radius:2px;border:1px solid #EAEAEA;width:150px;}
+.signMain .tabContent .btn {line-height:40px;background:rgb(0,177,66);margin-top:20px;font-size:15px;border-radius:3px;color:white;cursor:pointer;}
+.signMain .tabContent .goToRegister {text-align:left;line-height:40px;}
+.signMain .tabContent .goToRegister .go {cursor:pointer;color:#00732B;}
+.signMain .tabContent.signIn .item label {width:60px;}
+.signMain .tabContent.signIn .item input {width:170px;}
+.signMain .tabContent.signIn .remeber {text-align:left;line-height:50px;font-size:14px;}
+input:-webkit-autofill {background:none;}
+/*** 聊天室 chatRoom.html***/.chat {width:100%;height:100%;min-height:650px;}
+.chat-title {margin:20px auto;text-align:center;font-size:20px;line-height:40px;}
+.chat-content {width:600px;border:1px solid #A2A2A2;height:500px;overflow:auto;margin:0 auto;}
+.chat-content li.prompt {padding-left:40px;margin-top:10px;line-height:20px;color:#1DA951;}
+.chat-content li.prompt .name {color:#D60000;margin-right:10px;font-size:15px;}
+.chat-content li.msg {line-height:29px;font-size:20px;margin-top:30px;}
+.chat-content li.msg:nth-of-type(1) {margin-top:30px;}
+.chat-content li.msg:nth-last-of-type(1) {margin-bottom:30px;}
+.chat-content .msg .words {background:#EAEAEA;border-radius:9px;}
+.chat-content li.msg .name {color:#1DA951;width:80px;position:relative;font-size:15px;margin-left:20px;margin-top:-17px;}
+.chat-content li.msg .name .userName {display:block;overflow:hidden;line-height:16px;font-size:14px;text-align:center;}
+.chat-content li.msg .time {font-size:12px;color:#757575;float:left;line-height:29px;}
+.chat-content li.msg .avatar {width:35px;height:35px;display:block;border-radius:50%;margin:0 auto;}
+.chat-content li.msg .words {position:relative;width:300px;font-size:14px;padding-left:15px;margin:0 20px 0 0px;word-wrap:break-word;color:#333;}
+.chat-send {margin:20px 0;}
+.chat-send .input {font-size:14px;border-radius:3px;width:464px;height:40px;border:1px solid #1DA951;}
+.chat-send .input:focus {border:none;box-shadow:0 0 7px #BDCAC1;}
+.chat-send .sendBtn {background:#1DA951;line-height:30px;cursor:pointer;margin:0px 0 0 50px;border:none;color:white;font-size:16px;border-radius:3px;padding:4px 25px;}
+/*** 我的主页代码 myPage.html***/#upImg {visibility:hidden;}
+.myPageMain {width:1000px;margin:0 auto;}
+.myPageMain-title {font-size:26px;text-align:center;border-bottom:1px solid #1DA951;padding-bottom:10px;width:1000px;margin:30px auto 0;}
+.myPageMain-content-item {margin-top:20px;}
+.myPageMain-content-item-name {font-size:18px;width:170px;margin-bottom:20px;border-bottom:2px solid #1DA951;}
+.myPageMain-content-item-content {clear:both;box-shadow:0 0 3px #BBBBBB;padding:40px;}
+.myPageMain-content-item.avatar .myPageMain-content-item-content .preview .changeAvatar {width:100px;line-height:20px;padding:0;float:left;background:white;border:1px solid #D8D8D8;margin:20px 0 0 0;}
+.myPageMain-content-item.avatar .myPageMain-content-item-content .edit {margin-left:30px;}
+.myPageMain-content-item.avatar .myPageMain-content-item-content .edit .prompt {margin:10px 0 0 0;}
+.myPageMain-content-item.avatar .myPageMain-content-item-content .edit .confirm {margin:94px 0 0 100px;line-height:20px;background:#1DA951;cursor:pointer;color:white;border-radius:3px;border:none;}
+.myPageMain-content-item.avatar .myPageMain-content-item-content .preview img {width:100px;height:100px;display:block;cursor:pointer;}
+.datas .myPageMain-content-item-content {padding:0;}
+.myPageMain-content-item.datas {margin-bottom:60px;}
+.myPageMain-content-item.datas .dataEditCard {line-height:30px;padding:25px 0;border-bottom:1px solid #eee;}
+.myPageMain-content-item.datas .dataEditCard .dataEditCard-label {font-size:15px;width:110px;margin-right:40px;text-align:right;}
+.myPageMain-content-item.datas .dataEditCard button {background:#1DA951;border:none;color:white;cursor:pointer;padding:2px 12px;border-radius:3px;}
+.myPageMain-content-item.datas .dataEditCard button.edit {margin-left:30px;}
+.myPageMain-content-item.datas .dataEditCard button.save {margin-right:15px;}
+.myPageMain-content-item.datas  .dataEditCard-editContent input[type=text] {width:180px;line-height:25px;padding:0;font-size:13px;padding-left:10px;border:1px solid #E3E3E3;margin-right:30px;}
+.signature .dataEditCard-staticContent .content {width:370px;}
+.signature .dataEditCard-staticContent .edit {margin-top:20px;}
+.signature .dataEditCard-editContent textarea {width:300px;height:90px;resize:none;overflow:auto;border:1px solid #ddd;font-size:13px;line-height:20px;padding:2px;margin-right:20px;}
+/*** 关于我们页面 ***/.aboutUs-bigContent {width:1000px;margin:0  auto 10px;}
+.aboutUs-bigContent .content-title {cursor:pointer;font-size:25px;color:#494949;font-weight:bold;text-align:left;margin:20px 0;width:103px;border-bottom:2px solid #1DA951;}
+.aboutUs-bigContent .content-title:hover {width:100%;transition:width 0.4s;}
+.aboutUs-bigContent .content {overflow:hidden;}
+.aboutUs-bigContent .content-desc {line-height:20px;font-size:14px;color:#333;}
+.aboutUs-bigContent .aboutUs .content-desc p {text-indent:2em;}
+.aboutUs-bigContent .contactUs .content-desc {line-height:25px;}
+.aboutUs-bigContent .contactUs .content-desc .weixin {padding:20px 0 30px;}
+.aboutUs-bigContent .contactUs .content-desc .weixin img {width:100px;margin-left:180px;vertical-align:middle;cursor:pointer;box-shadow:0 0 33px #656565;}
+.aboutUs-bigContent .contactUs .content-desc .weixin img:hover {transform:rotate(360deg);transition:transform 0.8s;opacity:0.9;}
+.aboutUs-bigContent .content.toushu  .writeInput {padding:10px;border:1px solid #B5B5B5;resize:none;width:500px;height:160px;margin-top:20px;font-size:14px;}
+.aboutUs-bigContent .content.toushu .btns .reset {float:left;width:100px;margin-left:260px;margin-right:39px;text-align:center;background:#1CAB03;color:white;border-radius:3px;padding:6px;cursor:pointer;}
+.aboutUs-bigContent .content.toushu .btns {margin:20px 0;}
+.aboutUs-bigContent .content.toushu .btns .commit {float:left;cursor:pointer;width:100px;text-align:center;background:#1CAB03;color:white;border-radius:3px;padding:6px;}
+/*改bug 2016-05-09*/ .task-circle-main {min-height:100%;}
+.annouce-comments-content {padding:20px 0 20px 30px;position:relative;}
+.annouce-comments-content .close {width:30px;height:30px;position:absolute;right:0px;top:6px;text-align:center;}
+.annouce-comments-content .close .iconfont {color:#333;cursor:pointer;}
+.single-annouce button {cursor:pointer;border:none;border-radius:5px;background:#1DA951;padding:1px 15px;color:white;margin:0 10px;}
+.task-circle-main-annouce .single-annouce .icon-pinglun {color:#1DA951;}
+.aboutUs-bigContent a {color:#00772C;}
+.aboutUs-bigContent a:hover {color:#1DA951;}
