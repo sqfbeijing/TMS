@@ -1,23 +1,27 @@
 <% include header.html %>
 <div class="main clear">
  <div class="taskTypes">
-   <div class="title">任务类型</div>
-   <ul>
-       <% user_task.types.forEach(function(type){ %>
-       <li class="taskType-item">
-           <span class="name"><%= type.type_name %></span>  
-           <button class="show">查看</button>
-           <button class="delete">删除</button>
-           <button class="edit">修改</button>
-           <span class="modifyBlock dn">
-              <input type="text" class="tac editText">
-              <button class="save">保存</button>
-              <button class="cancle">取消</button>
-          </span>
-      </li>
-      <% }); %>
-  </ul>
-  <div class="addType">
+   <div class="title">
+    <i class="iconfont icon-leixing"></i>
+    任务类型
+</div>
+<ul>
+   <% user_task.types.forEach(function(type){ %>
+   <li class="taskType-item">
+    <i class="iconfont icon-tag"></i>
+    <span class="name"><%= type.type_name %></span>  
+    <button class="show">查看</button>
+    <button class="delete">删除</button>
+    <button class="edit">修改</button>
+    <span class="modifyBlock dn">
+      <input type="text" class="tac editText">
+      <button class="save">保存</button>
+      <button class="cancle">取消</button>
+  </span>
+</li>
+<% }); %>
+</ul>
+<div class="addType">
     <input type="text" class="typeText tac">
     <button class="addBtn">
         增加类型
@@ -30,7 +34,7 @@
         <div class="title">任务类型:
             <span class="typeName"><%= type.type_name %></span>    
         </div> 
-        <ul style="color: red">
+        <ul class="taskItems">
             <% type.tasks.forEach(function(task){ %>
             <% if (task.complete === false) { %>
             <li>
@@ -80,7 +84,9 @@
 
 </div>
 <div class="welcomeWords fl">
-    <div class="title">
+    <div class="welcomeWrapper">
+
+
         <% var allTaskNumber = 0; %>
         <% user_task.types.forEach(function(type){ %>
         <% type.tasks.forEach(function(task){ %>
@@ -89,17 +95,47 @@
         <% } %>
         <% }); %>
         <% }); %>
-        欢迎您！您还有 <%= allTaskNumber %> 项任务需要完成 <br>
-        <% var allCompletedTaskNumber = 0; %>
-        <% user_task.types.forEach(function(type){ %>
-        <% type.tasks.forEach(function(task){ %>
-        <% if (task.complete === true) { %>
-        <% allCompletedTaskNumber++; %>
-        <% } %>
-        <% }); %>
-        <% }); %>
-        您已经累计完成 <%= allCompletedTaskNumber %> 项任务
-    </div>
+
+        <div class="bigWords">
+         <i class="iconfont icon-iconindexhuanying"></i>
+         欢迎您！
+     </div>
+     <div class="needDo">
+         <div class="title">
+             您还有 <span class="count"><%= allTaskNumber %></span>  项任务需要完成! 
+             <i class="iconfont icon-tishi"></i>
+         </div>
+         <div class="tasks">
+             <% user_task.types.forEach(function(type){ %>
+             <% var typeName = type.type_name; %>
+                  <% type.tasks.forEach(function(task){ %>
+                  <% if (task.complete === false) { %>
+                  <div class="task">
+                      <i class="iconfont icon-renwudiaodu"></i>
+                      <span class="taskName"><%= task.name %></span>(<span class="typeName"><%= typeName %></span>)
+
+                  </div>
+                  <% } %>
+                  <% }); %>
+
+          <% }); %>
+      </div>
+  </div>
+  <div class="finished">
+      <% var allCompletedTaskNumber = 0; %>
+      <% user_task.types.forEach(function(type){ %>
+      <% type.tasks.forEach(function(task){ %>
+      <% if (task.complete === true) { %>
+      <% allCompletedTaskNumber++; %>
+      <% } %>
+      <% }); %>
+      <% }); %> 
+      您已经累计完成了 
+    <span class="count"><%= allCompletedTaskNumber %></span>
+       项任务
+      <i class="iconfont icon-icon"></i>
+  </div>
+</div>
 </div>
 <div class="taskContentView dn fl">
     <button class="closeView">关闭详情</button>
@@ -119,6 +155,7 @@
         <button class="cancle">取消</button>
     </div>
 </div>
+
 </div>
 <!-- 处理任务页面的js -->
 <script src="javascripts/task.js">

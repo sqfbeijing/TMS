@@ -4,6 +4,19 @@
 .single-comments-content .commentsReply  .myReply.on {display:block;}
 .task-circle-main {background:white;width:1000px;margin:0 auto;}
 .task-circle-main .header-description {height:50px;font-size:18px;line-height:50px;text-align:center;border-bottom:1px solid #9A9A9A;}
+.task-circle-main .header-description .iconfont.icon-pengyouquan {
+	font-size: 21px;
+	color: #1DA951;
+	display: inline-block;
+}
+.task-circle-main .header-description.on .iconfont.icon-pengyouquan {
+	transform: rotate(360deg);
+	transition: all 0.6s linear;
+}
+.task-circle-main .header-description:hover .iconfont.icon-pengyouquan {
+	transform: rotate(360deg);
+	transition: all 0.6s linear;
+}
 .task-circle-main-annouce .single-annouce {border-bottom:1px solid #E0E0E0;width:80%;padding:20px 0 20px 270px;margin:0 auto;}
 .task-circle-main-annouce .single-annouce .timing,.task-circle-main-annouce .single-annouce .prompt,.task-circle-main-annouce .single-annouce .go-see {height:30px;line-height:30px;}
 .task-circle-main-annouce .single-annouce .comments {cursor:pointer;position:relative;}
@@ -24,6 +37,16 @@
 .main .task-wrapper.on {display:block;}
 .main .task-wrapper button {padding:1px 9px 1px 9px;border-radius:6px;background:white;border:1px solid #1DA951;}
 .main .task-wrapper .task-panel .title {line-height:29px;text-align:center;font-size:16px;color:white;font-weight:900;border-bottom:1px solid #00792D;}
+.main .task-wrapper .task-panel .taskItems li > button {
+	margin: 0 0px 0 4px;
+} 
+.main .task-wrapper .task-panel .taskItems .modifyBlock .editText {
+	width: 123px;
+	border: 1px solid #7E7E7E;
+	line-height: 20px;
+	margin-left: 5px;
+	font-size: 14px;
+}
 /*任务详情块*/.main .taskContentView {line-height:25px;position:absolute;right:0;top:0;bottom:0;left:310px;text-align:center;font-size:19px;}
 .main .taskContentView button {background:#1DA951;border:none;padding:2px 11px;border-radius:2px;color:white;line-height:18px;}
 .main .taskContentView .closeView {float:left;margin-top:2px;}
@@ -37,25 +60,78 @@
 .main .taskContentView  .edit-content textarea {width:600px;height:250px;border:1px solid #1DA951;resize:none;margin:10px 0 0 0;overflow:auto;clear:both;font-size:15px;padding:10px;}
 .main .taskContentView  .edit-content textarea:focus {box-shadow:0 0 6px rgb(18,144,65);border:none;}
 /*欢迎块*/.main .welcomeWords {position:absolute;text-align:center;left:310px;right:0;padding-top:160px;float:none;font-size:19px;}
+.main .welcomeWords .welcomeWrapper .bigWords {
+	margin: 20px 0 20px 50px;
+	font-size: 26px;
+}
+.main .welcomeWords .welcomeWrapper {
+	width: 300px;
+	margin: 0 auto;
+	color: #333;
+	text-align: left;
+}
+.main .welcomeWords .welcomeWrapper .needDo .task  {
+	margin: 15px 0;
+}
+.main .welcomeWords .welcomeWrapper .needDo .tasks .task{
+	font-size: 15px;
+	line-height: 30px;
+}
+.main .welcomeWords .welcomeWrapper .needDo .tasks .task .taskName {
+	margin: 0 0 0 10px;
+	display: inline-block;
+	width: 170px;
+}
+.main .welcomeWords .welcomeWrapper .needDo .tasks .task .typeName {
+	color: #7D7D7D;
+}
+.main .welcomeWords .iconfont.icon-renwudiaodu {
+	color: #1DA951;
+	font-size: 30px;
+}
+.main .welcomeWords .welcomeWrapper  .iconfont.icon-icon {
+	color: #1DA951;
+	font-size: 19px;
+	font-weight: 900;
+}
+.main .welcomeWords .welcomeWrapper .needDo .iconfont.icon-tishi {
+	font-size: 19px;
+	color: #FF4400;
+}
+.main .welcomeWords .iconfont.icon-iconindexhuanying {
+	font-size: 26px;
+	color: #1DA951;
+}
 .main .taskTypes {float:left;height:100%;width:310px;overflow:auto;border-right:1px solid #C5C5C5;a}
 .main .taskTypes button {padding:1px 9px 1px 9px;border-radius:6px;background:#1DA951;border:none;color:white;cursor:pointer;}
 .main .taskTypes  .addType .addBtn {
-	    padding: 0px 30px;
-    margin-left: 15px;
-    line-height: 26px;
+	padding: 0px 30px;
+	margin-left: 15px;
+	line-height: 26px;
 }
 .main .taskTypes .title {line-height:29px;text-align:center;font-size:16px;}
+.main .taskTypes .title .icon-leixing {
+	color: #1DA951;
+}
 .main .taskTypes .addType {border:1px solid #1DA951;border-right:none;border-left:none;line-height:60px;}
 .main .taskTypes .addType .typeText {line-height:20px;width:142px;margin:0 10px;}
 .main .taskTypes li {padding:10px 0 10px 0;border:1px solid #1DA951;border-bottom:none;border-right:none;border-left:none;}
-.main .taskTypes li span.name {display:inline-block;width:153px;margin-left:10px;font-size: 16px;}
+.main .taskTypes .taskType-item .icon-tag {
+	color: #585858;
+	margin-left: 5px;
+	font-size: 14px;
+}
+.main .taskTypes li span.name {display:inline-block;width:133px;margin-left:0px;font-size: 13px;}
 .main .taskTypes li .modifyBlock {display:block;line-height:30px; margin-top: 6px;}
 /*.main .taskTypes li .modifyBlock input[type=text] {width:110px;line-height:20px;margin-left:10px;}*/
 .main .taskTypes li .modifyBlock input[type=text] {
-    width: 151px;
-    line-height: 20px;
-    margin-left: 10px;
-    margin-right: 50px;
+	width: 151px;
+	line-height: 20px;
+	margin-left: 20px;
+	margin-right: 32px;
+}
+.main .taskTypes li .modifyBlock button:nth-of-type(1) {
+	/*margin-right: 10px;*/
 }
 .main .taskTypes li .modifyBlock.dn {display:none;}
 .task-wrapper {float:left;}
@@ -64,14 +140,18 @@
 .task-panel li {line-height:30px;border-bottom:1px solid #006D28;}
 .task-panel li .taskName {display:block;width:100%;color:white;line-height:20px;padding-left:5px;}
 .task-panel .addBlock {border-bottom:1px solid #006D28;line-height:30px;}
-.task-panel .completedTasks {line-height:30px;border-bottom:1px solid #00792D;}
+.task-panel .completedTasks {line-height:30px;border-bottom:1px solid #00792D;color: white;}
 .task-panel .completedTasks .items li {border-top:1px solid #00792D;border-bottom:none;}
 .trashContent {display:none;}
 .trashContent.on {display:block;}
 .completedTasks .items {display:none;}
 .completedTasks .items.on {display:block;}
 /*搜索任务页面*/.taskNameSearchMain {text-align:center;margin:40px auto;min-height:700px;}
+
 .taskNameSearchMain .title {margin-bottom:20px;color:#1DA951;}
+.taskNameSearchMain .notFind .sorry .icon-404 {
+	font-size: 20px;
+}
 .taskNameSearchMain .notFind .sorry {color:#1DA951;font-size:20px;margin-top:240px;text-align:center;}
 .taskNameSearchMain .singleTask {width:540px;margin:0 auto;text-align:left;font-size:16px;line-height:25px;box-shadow:0 0 13px #D8D8D8;border-radius:3px;padding:20px;margin-bottom:40px;}
 .taskNameSearchMain .singleTask .item .detail-title {font-weight:900;color:#1DA951;}
@@ -103,6 +183,14 @@
 input:-webkit-autofill {background:none;}
 /*** 聊天室 chatRoom.html***/.chat {width:100%;height:100%;min-height:650px;}
 .chat-title {margin:20px auto;text-align:center;font-size:20px;line-height:40px;}
+.chat-title .icon-liaotianshi {
+	font-size: 20px;
+	color: #1DA951;
+}
+.chat-title.on .icon-liaotianshi {
+	color: #FB009C;
+	transition: color 0.4s;
+}
 .chat-content {width:600px;border:1px solid #A2A2A2;height:500px;overflow:auto;margin:0 auto;}
 .chat-content li.prompt {padding-left:40px;margin-top:10px;line-height:20px;color:#1DA951;}
 .chat-content li.prompt .name {color:#D60000;margin-right:10px;font-size:15px;}
@@ -116,7 +204,7 @@ input:-webkit-autofill {background:none;}
 .chat-content li.msg .avatar {width:35px;height:35px;display:block;border-radius:50%;margin:0 auto;}
 .chat-content li.msg .words {position:relative;width:300px;font-size:14px;padding-left:15px;margin:0 20px 0 0px;word-wrap:break-word;color:#333;}
 .chat-send {margin:20px 0;}
-.chat-send .input {font-size:14px;border-radius:3px;width:464px;height:40px;border:1px solid #1DA951;}
+.chat-send .input { padding-left: 20px;font-size:14px;border-radius:3px;width:464px;height:40px;border:1px solid #1DA951;}
 .chat-send .input:focus {border:none;box-shadow:0 0 7px #BDCAC1;}
 .chat-send .sendBtn {background:#1DA951;line-height:30px;cursor:pointer;margin:0px 0 0 50px;border:none;color:white;font-size:16px;border-radius:3px;padding:4px 25px;}
 /*** 我的主页代码 myPage.html***/#upImg {visibility:hidden;}

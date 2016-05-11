@@ -1,7 +1,10 @@
 <% include header.html %>
 <div class="task-circle-main">
 	<header class="header-description">
-		所有人的任务状态
+		<span class="iconWrappeer">
+			<i class="iconfont icon-pengyouquan"></i>
+		</span>
+		<span>任务圈</span>
 	</header>
 	<div class="task-circle-main-annouce">
 		<!-- task_states数组的渲染 -->
@@ -78,6 +81,9 @@
 		return obj;
 	}
 	$(function() {
+		// 页面一加载，任务圈转动起来
+		$(".task-circle-main .header-description").addClass('on');
+
 		var $edit_open_buttons = $(".single-comments-content.open-edit");
 		var $writing_cancel_buttons = $(".single-comments-content.writing .cancel");
 		var $writing_confirm_buttons = $(".single-comments-content.writing .confirm");
@@ -85,15 +91,15 @@
 		// 点击我要评论，出现评论框
 		$edit_open_buttons.click(function(event) {
 			$(this)
-				.parent()
-				.find('.writing').slideDown('400', function() {
-					$(this).siblings('.open-edit').text("评论中...");
-				});
+			.parent()
+			.find('.writing').slideDown('400', function() {
+				$(this).siblings('.open-edit').text("评论中...");
+			});
 		});
 		// 点击评论的取消，还原
 		$writing_cancel_buttons.click(function(event) {
 			$(this).parent().hide()
-				.siblings('.open-edit').text("我要评论");
+			.siblings('.open-edit').text("我要评论");
 		});
 		// 点击评论按钮，append到系统上，然后ajax
 		$writing_confirm_buttons.click(function(event) {
@@ -104,7 +110,7 @@
 			}
 			// 生成新的一条评论并且append到原来的评论里面
 			var $newComment = $('<li class="single-comments-content"><span class="user-name">我</span> 说：<span>' + commentWords +
-				'</span><button class="commentsReplyBtn">回复</button><button class="commentsReplyHideBtn">收起回复</button>' +
+				'</span><button class="commentsReplyBtn">回复</button>' +
 				'<div class="commentsReply"><div class="singleReply myReply">我要回复：' +
 				'<input type="text" class="myReplyInput">' +
 				'<button class="myReplyConfirmBtn">确认</button>' +
@@ -113,6 +119,12 @@
 				'</div>' +
 				'</li>');
 			$newComment.insertAfter($(this).parent());
+			// 将评论的数量变化
+			var number = parseInt($(this).parents(".single-annouce").find('.options-commentNumber').text());
+			number++;
+			$(this).parents(".single-annouce").find('.options-commentNumber').text("" + number);
+			$(this).siblings('input').val("");
+
 			// 定义数据
 			var stateId = $(this).parents(".single-annouce").data("stateId");
 			// console.log(stateId)
@@ -136,8 +148,8 @@
 				}
 			});
 		});
-		/*任务圈的状态的评论部分*/
-		$(".single-annouce").on('click', '.options-commentSwitch', function(event) {
+/*任务圈的状态的评论部分*/
+$(".single-annouce").on('click', '.options-commentSwitch', function(event) {
 			// 显示评论
 			$(this).parents(".single-annouce").find('.annouce-comments-content').addClass('on');
 		});
