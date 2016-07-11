@@ -51,7 +51,7 @@
 						<button class="cancel">取消</button>
 					</div>
 				</div>
-				<div class="dataEditCard clearfix" data-item-name="sex">
+				<div class="dataEditCard clearfix sex" data-item-name="sex">
 					<div class="dataEditCard-label fl">
 						性别
 					</div>
@@ -145,32 +145,71 @@
 	$(function() {
 		// 修改信息，(非图像) 发送ajax到后端
 		function updateUserData(dataName, dataContent){
-			var data = {
+			var data;
+			data = {
 				dataName: dataName,
 				dataContent: dataContent
 			};
-
-			$.ajax({
-				url: '/upload/updateUserData',
-				type: 'post',
-				data: data,
-				success: function(res){
-					if (!res) {
-						alert("ajax error");
-						return;
-					} else if (res === "ok") {
-						alert("资料提交成功！");
-					}
-				}
-			});
+		// 检验合法性
+		if (dataName === "nickname" && $.trim(dataContent).length > 12) {
+			alert("昵称长度不能大于12!");
+			return;
 		}
+		if (dataName === "age") {
+			var tmpAge = parseInt(dataContent);
+			console.log(typeof tmpAge)
+			console.log(tmpAge);
 
-		$(".fileOpen").click(function(event) {
-			$("#upImg").click();
+			if (isNaN(tmpAge)) {
+				alert("格式不对！应该为数字！");
+				return;
+			}
+			if (tmpAge < 1 || tmpAge > 150) {
+				alert("年龄应该在1~150之间!");
+				return;
+			}
+			data = {
+				dataName: dataName,
+				dataContent: tmpAge
+			};
+		}
+		if (dataName === "mobile_phone_number" && ($.trim(dataContent).length !== 11)) {
+			alert("手机号码长度应该为11位！");
+			return;
+		}
+		if (dataName === "email" && ($.trim(dataContent).length < 5)) {
+			alert("邮箱长度不能小于5！");
+			return;
+		}
+		if (dataName === "live_place" && ($.trim(dataContent).length < 2)) {
+			alert("居住地长度不能小于2！");
+			return;
+		}
+		if (dataName === "signature" && ($.trim(dataContent).length === 0)) {
+			alert("个性签名不能为空！");
+			return;
+		}
+		$.ajax({
+			url: '/upload/updateUserData',
+			type: 'post',
+			data: data,
+			success: function(res) {
+				if (!res) {
+					alert("ajax error");
+					return;
+				} else if (res === "ok") {
+					alert("资料提交成功！");
+				}
+			}
 		});
-		$(".fileOpen").siblings("img").click(function(event) {
-			$("#upImg").click();
-		});
+	}
+
+	$(".fileOpen").click(function(event) {
+		$("#upImg").click();
+	});
+	$(".fileOpen").siblings("img").click(function(event) {
+		$("#upImg").click();
+	});
 		// 选取并预览图像
 		$("#upImg").on('change', function(event) {
 			// 传到后端
@@ -179,6 +218,12 @@
 			// 先将jq对象转化为dom对象,file是多选
 			// 文件对象
 			var img = $('#upImg').get(0).files[0];
+			// 图片不能超过100kB, imgSize单位是B
+			var imgSize = img.size;
+			if (imgSize > 100000) {
+				alert("选取的图片大小不能超过100kb!" + "\n而您选取的头像大小是" + imgSize/1000 + "kb");
+				return;
+			}
 			// name为portrait
 			formData.append('portrait', img);
 			// 发送到后端,上传头像
@@ -196,6 +241,8 @@
 					var path = res.path;
 
 					$(".myPageMain-content-item-content .preview img").attr('src', path);
+					// // 因为资料更新过多，直接刷新页面
+					// window.location.href = "//myPage.html";
 				}
 			});
 
@@ -252,6 +299,7 @@
 
 				$(this).parent().hide().siblings(".dataEditCard-staticContent").show().find('.content').text(text);
 			}
+
 			// 最终发送到ajax
 			var dataName = $(this).parents(".dataEditCard").data('itemName');
 			var dataContent = $(this).parents(".dataEditCard").find('.dataEditCard-staticContent .content').text();

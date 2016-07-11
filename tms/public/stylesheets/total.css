@@ -3,7 +3,7 @@
 /*任务圈的状态的评论部分的回复部分*/.single-comments-content .commentsReply .myReply {display:none;}
 .single-comments-content .commentsReply  .myReply.on {display:block;}
 .task-circle-main {background:white;width:1000px;margin:0 auto;}
-.task-circle-main .header-description {height:50px;font-size:18px;line-height:50px;text-align:center;border-bottom:1px solid #9A9A9A;}
+.task-circle-main .header-description {position: relative;height:50px;font-size:18px;line-height:50px;text-align:center;}
 .task-circle-main .header-description .iconfont.icon-pengyouquan {
 	font-size: 21px;
 	color: #1DA951;
@@ -175,6 +175,9 @@
 .signMain .tabContent .item label {float:left;text-align:left;width:110px;font-size:16px;margin-left:20px;}
 .signMain .tabContent .item input {font-size:14px;height:28px;padding:0 0 0 10px;margin:0;border-radius:2px;border:1px solid #EAEAEA;width:150px;}
 .signMain .tabContent .btn {line-height:40px;background:rgb(0,177,66);margin-top:20px;font-size:15px;border-radius:3px;color:white;cursor:pointer;}
+.signMain .tabContent .btn:hover {
+	background: rgb(0, 132, 49);
+}
 .signMain .tabContent .goToRegister {text-align:left;line-height:40px;}
 .signMain .tabContent .goToRegister .go {cursor:pointer;color:#00732B;}
 .signMain .tabContent.signIn .item label {width:60px;}
@@ -211,7 +214,7 @@ input:-webkit-autofill {background:none;}
 .myPageMain {width:1000px;margin:0 auto;}
 .myPageMain-title {font-size:26px;text-align:center;border-bottom:1px solid #1DA951;padding-bottom:10px;width:1000px;margin:30px auto 0;}
 .myPageMain-content-item {margin-top:20px;}
-.myPageMain-content-item-name {font-size:18px;width:170px;margin-bottom:20px;border-bottom:2px solid #1DA951;}
+.myPageMain-content-item-name {width: 170px;font-size:18px;margin-bottom:20px;border-bottom:2px solid #1DA951;}
 .myPageMain-content-item-content {clear:both;box-shadow:0 0 3px #BBBBBB;padding:40px;}
 .myPageMain-content-item.avatar .myPageMain-content-item-content .preview .changeAvatar {width:100px;line-height:20px;padding:0;float:left;background:white;border:1px solid #D8D8D8;margin:20px 0 0 0;}
 .myPageMain-content-item.avatar .myPageMain-content-item-content .edit {margin-left:30px;}
@@ -251,3 +254,150 @@ input:-webkit-autofill {background:none;}
 .task-circle-main-annouce .single-annouce .icon-pinglun {color:#1DA951;}
 .aboutUs-bigContent a {color:#00772C;}
 .aboutUs-bigContent a:hover {color:#1DA951;}
+/*20160603 加动画*/
+/*header.top-header nav .left .searchInput {
+	margin-left: 70px;
+}*/
+/*任务圈线条*/
+.task-circle-main .header-description .line {
+	position: absolute;
+	width: 1000px;
+	height: 2px;
+	background: #1DA951;
+	/*border: 1px solid #E0E0E0;*/
+	border-radius: 10px;
+	animation: lineAnim 1s linear 1;
+}
+@keyframes lineAnim {
+	from {
+		width: 0px;
+	}
+	to {
+		width: 1000px;
+	}
+}
+/*头像翻转*/
+.top-header nav .user .switch:hover img {
+	transform: rotateY(360deg);
+	transition: 0.6s;
+}
+/*任务页*/
+.finishCurtain {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 4;
+	background: rgba(0, 0, 0, 0.68);
+}
+.finishCurtain img {
+	width: 560px;
+	position: absolute;
+	display: block;
+	top: 70px;
+	left: 50%;
+	margin-left: -280px;
+}
+.finishCurtain-words {
+	z-index: 6;
+	position: fixed;
+	color: black;
+	text-align: center;
+	width: 560px;
+	left: 50%;
+	font-family: monospace;
+	font-size: 70px;
+	top: 100px;
+	margin-left: -280px;
+}
+.finishCurtain-words.on {
+	animation: runWords 2.2s 1;
+	/*延迟一秒*/
+	/*animation-delay:1s;*/
+	/*匀速*/
+	animation-timing-function: linear;
+}
+
+@keyframes runWords {
+	0% {
+		font-size: 20px;
+	}
+	100% {
+		font-size: 70px;
+	}
+}
+/*我的主页 线条*/
+/*.myPageMain-content-item-name {
+	animation: lineAnim2 1s 1;
+}
+@keyframes lineAnim2 {
+	from {
+		width: 170px;
+	}
+	to {
+		width: 100%;
+	}
+	}*/
+/*.myPageMain-content-item:hover .myPageMain-content-item-name {
+	width: 80%;
+	transition: 1s;
+	}*/
+
+/*任务页小球动画*/
+  .taskRunBallBox  {
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    overflow: hidden;
+}
+
+.taskRunBallBox  .ball {
+    /*background-color: pink;*/
+    /*color: rgb(233,65,103);*/
+    color: rgb(41, 136, 76);
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    font-family: new times roman, serif;
+}
+.taskRunBallBox  .cover {
+    position: absolute;
+    /*background-color: rgb(233,65,103);*/
+    background: rgb(58, 137, 255);
+    /*background: rgb(255, 68, 0);*/
+    /*background: rgb(41, 136, 76);*/
+    border-radius: 50%;    
+}
+.main .welcomeWords {
+	    padding-top: 230px;
+}
+.login .signMain-wrapper {
+}
+.task-circle-main-annouce .single-annouce .icon-pinglun:hover {
+	color: #FF4400;
+	transition: 0.3s;
+}
+.annouce-comments-content .close .iconfont:hover {
+		color: #FF4400;
+	transition: 0.3s;
+}
+.main .task-wrapper {
+	    width: 280px;
+    padding: 5px 15px;
+}
+.main .task-wrapper button:hover {
+	background: #098436;
+	color: white;
+}
+header.top-header nav .left .searchInput:focus {
+	box-shadow: 0 0 13px #5A5A5A;
+    transition: 0.3s;
+}
+.main .taskTypes button:hover {
+	/*opacity: 0.7;*/
+	background: #2B9051;
+}

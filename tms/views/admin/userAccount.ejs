@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>用户账户-查看用户账户</title>
-	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
-	<link rel="stylesheet" href="stylesheets/admin.css">
+	<link rel="stylesheet" href="/admin/stylesheets/iconfont.css">
+	<link rel="stylesheet" href="/admin/stylesheets/admin.css">
 	<script src="/javascripts/jquery.js">
 	</script>
 	<script src="/admin/javascripts/admin.js"></script>
@@ -145,6 +145,7 @@
 			});
 			// 点击删除按钮，则删除用户账户
 			$table.on('click', 'button.delete', function(event) {
+				var $tmp = $(this).parents("tr");
 				var t = window.confirm("确认删除？");
 				if (t === false) {
 					return;
@@ -162,6 +163,7 @@
 						success: function(res) {
 							if (res === "ok") {
 								alert("删除成功！");
+								$tmp.remove();
 							}
 						}
 					})

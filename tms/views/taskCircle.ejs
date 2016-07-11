@@ -5,6 +5,7 @@
 			<i class="iconfont icon-pengyouquan"></i>
 		</span>
 		<span>任务圈</span>
+		<div class="line"></div>
 	</header>
 	<div class="task-circle-main-annouce">
 		<!-- task_states数组的渲染 -->
@@ -151,7 +152,8 @@
 /*任务圈的状态的评论部分*/
 $(".single-annouce").on('click', '.options-commentSwitch', function(event) {
 			// 显示评论
-			$(this).parents(".single-annouce").find('.annouce-comments-content').addClass('on');
+			// $(this).parents(".single-annouce").find('.annouce-comments-content').addClass('on');
+			$(this).parents(".single-annouce").find('.annouce-comments-content').slideDown();
 		});
 
 		// 点击回复，则出现我要回复模块
@@ -194,7 +196,8 @@ $(".single-annouce").on('click', '.options-commentSwitch', function(event) {
 
 		// 点击叉叉，关闭评论的显示
 		$(".single-annouce").on('click', '.annouce-comments-content .close .iconfont.icon-guanbi', function(event) {
-			$(this).parents(".annouce-comments-content").removeClass('on');
+			// $(this).parents(".annouce-comments-content").removeClass('on');
+			$(this).parents(".annouce-comments-content").slideUp(200);
 		});
 	})
 </script>

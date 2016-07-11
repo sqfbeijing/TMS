@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>管理员账户-增加管理员账户</title>
-	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
-	<link rel="stylesheet" href="stylesheets/admin.css">
+	<link rel="stylesheet" href="/admin/stylesheets/iconfont.css">
+	<link rel="stylesheet" href="/admin/stylesheets/admin.css">
 	<script src="/javascripts/jquery.js">
 	</script>
 	<script src="/admin/javascripts/admin.js"></script>
@@ -58,13 +58,21 @@
 			$confirmBtn.click(function(event) {
 				var adminName = $("#addAdminName").val();
 				var adminPassword = $("#addAdminPassword").val();
-
+				
+				if (adminName.length > 10) {
+					alert("账户名长度不能超过10!");
+					return;
+				}
+				if (adminPassword.length > 12 || adminPassword.length < 6) {
+					alert("密码长度应该在6位到12位之间!");
+					return;
+				}
 				if ($.trim(adminName) === "") {
-					alert("用户账户名不能为空！");
+					alert("账户名不能为空！");
 					return;
 				}
 				if ($.trim(adminPassword) === "") {
-					alert("用户密码不能为空！");
+					alert("密码不能为空！");
 					return;
 				}
 				$.ajax({

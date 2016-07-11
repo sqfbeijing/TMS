@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>用户账户-增加用户账户</title>
-	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1453964335_3456287.css">
-	<link rel="stylesheet" href="stylesheets/admin.css">
+	<link rel="stylesheet" href="/admin/stylesheets/iconfont.css">
+	<link rel="stylesheet" href="/admin/stylesheets/admin.css">
 	<script src="/javascripts/jquery.js">
 	</script>
 	<script src="/admin/javascripts/admin.js"></script>
@@ -59,6 +59,14 @@
 				var userName = $("#addUserName").val();
 				var userPassword = $("#addUserPassword").val();
 
+				if (userName.length > 10) {
+					alert("账户名长度不能超过10!");
+					return;
+				}
+				if (userPassword.length > 12 || userPassword.length < 6) {
+					alert("密码长度应该在6位到12位之间!");
+					return;
+				}
 				if ($.trim(userName) === "") {
 					alert("用户账户名不能为空！");
 					return;

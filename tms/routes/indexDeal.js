@@ -156,16 +156,19 @@ router.post("/sendActionToDb", function(req, res) {
 		}
 
 		if (action === "emptyFinishedTask") {
+			console.log(arr);
 			arr.forEach(function(item) {
 				if (item.type_name === typeName) {
-					item.tasks.forEach(function(item, index, array) {
-						if (item.complete === true) {
+					// 20160603解决bug 倒序删除方法
+					for (var i = item.tasks.length - 1; i >= 0; i--) {
+						if (item.tasks[i].complete === true) {
 							// splice方法删除数组中的元素
-							array.splice(index, 1);
+							item.tasks.splice(i, 1);
 						}
-					});
+					}
 				}
 			});
+			console.log(arr);
 			//保存新的到数据库
 			user_task.types = arr;
 			user_task.save(function(err) {

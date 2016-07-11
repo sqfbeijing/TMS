@@ -28,15 +28,15 @@ lib.sort = function(arr) {
 	});
 	return arr;
 }
-// 有next
-lib.initUserTask = function(next) {
+// // 有next
+// lib.initUserTask = function(next) {
 
-}
+// }
 
-// 一个用户创建完成之后，需要初始化
-// 例如： 初始化任务，资料，头像
-lib.initUser = function(){
+// // 一个用户创建完成之后，需要初始化
+// // 例如： 初始化任务，资料，头像
+// lib.initUser = function(){
 
-}
+// }
 
 module.exports = lib;

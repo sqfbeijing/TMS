@@ -3,13 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>登录-注册</title>
-	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1450018119_0425067.css">
+	<link rel="stylesheet" href="stylesheets/iconfont.css">
 	<link rel="stylesheet" href="stylesheets/common.css">
 	<link rel="stylesheet" href="stylesheets/total.css">
-	<script src="http://cdn.bootcss.com/jquery/1.8.3/jquery.min.js">
+	<style>
+		body.login .signMain-wrapper{
+			background: white;
+			animation: changeToLogin 1s;
+			/*animation-duration: 2s;*/
+		}
+		body.register .signMain-wrapper{
+			color: white;
+			background: black;
+			animation: changeToRegister 1s;
+			/*animation-duration: 2s;*/
+		}
+		@keyframes changeToRegister {
+			0% {
+				color: black;
+				background: white;
+			}
+			100% {
+				color: white;
+				background: black;
+			}
+		}
+	</style>
+	<script src="javascripts/jquery.js">
 	</script>
 </head>
-<body class="signPage">
+<body class="signPage login">
 	<div class="signMain-wrapper">
 		<div class="signMain tac">
 			<div class="title">
@@ -86,6 +109,8 @@
 			$(this).addClass('on').siblings().removeClass('on');
 			var index = $(this).index();
 			$tabContents.eq(index).addClass('on').siblings().removeClass('on');
+			// 动画
+			$("body").toggleClass('login').toggleClass('register');
 		});
 		// 登录
 		$signInBtn.click(function(event) {
@@ -126,6 +151,14 @@
 			var userPassword = $(this).parents(".tabContent").find('.regPassword input:eq(0)').val();
 			var reUserPassword = $(this).parents(".tabContent").find('.regPassword input:eq(1)').val();
 
+			if (userName.length > 10) {
+				alert("账户名长度不能超过10!");
+				return;
+			}
+			if (userPassword.length > 12 || userPassword.length < 6) {
+				alert("密码长度应该在6位到12位之间!");
+				return;
+			}
 			if ($.trim(userName) == "") {
 				alert("用户名不能为空！");
 				return;

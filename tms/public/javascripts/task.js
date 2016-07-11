@@ -1,5 +1,8 @@
 // 此文件用于： 登陆后的首页，处理任务的事件
-
+function playFinishMusic() {
+    var t = document.getElementById("finishMusic");
+    t.play();
+}
 $(function() {
     //此页面函数库
     function refreshPage() {
@@ -213,14 +216,14 @@ $(".task-panel").on('click', '.edit', function(event) {
             newTaskName: words
         };
         sendActionToDb(obj);
-                // 右侧欢迎块变动
-                var $spans = $(".welcomeWords .needDo .task .taskName");
-                for (var i = 0; i < $spans.length; i++) {
-                    if ($.trim($spans.eq(i).text()) === taskName) {
-                        $spans.eq(i).text(words);
-                    }
-                }
-            });
+        // 右侧欢迎块变动
+        var $spans = $(".welcomeWords .needDo .task .taskName");
+        for (var i = 0; i < $spans.length; i++) {
+            if ($.trim($spans.eq(i).text()) === taskName) {
+                $spans.eq(i).text(words);
+            }
+        }
+    });
     // 面板上增加任务部分的函数
     $(".task-panel .addBlock button.add").click(function(event) {
         $(this).siblings('.addBlock-inner').removeClass('dn');
@@ -359,7 +362,16 @@ $(".task-panel").on('click', '.edit', function(event) {
         // 增加元素到completedTasks
         var newCompletedTask = $('<li><span class="name">' + taskName + '</span></li>');
         newCompletedTask.appendTo($(this).parents("ul").siblings('.completedTasks').find('.items'));
-        $(this).parent().remove();
+        // 完成的音乐
+        playFinishMusic();
+        // 动画
+        $(".finishCurtain").show();
+        $(".finishCurtain-words").addClass('on');
+        // setTimeout(function(){
+        //     $(".finishCurtain").hide();
+        //     $(".finishCurtain-words").removeClass('on');
+        // }, 4000);
+$(this).parent().remove();
         // 移除欢迎块对应的那个div
         var $welcomeTasks = $(".welcomeWords .needDo .task");
         var needCount = parseInt($(".welcomeWords .needDo .title .count").text());
@@ -381,7 +393,11 @@ $(".task-panel").on('click', '.edit', function(event) {
             }
         }
     });
-
+// 动画结束后，点击则关闭
+$(".finishCurtain").click(function(event) {
+    $(this).hide();
+    $(".finishCurtain-words").removeClass('on');
+});
     // 点击关闭详情
     $(".taskContentView .closeView").click(function(event) {
         /* Act on the event */

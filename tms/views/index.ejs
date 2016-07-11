@@ -4,8 +4,8 @@
    <div class="title">
     <i class="iconfont icon-leixing"></i>
     任务类型
-</div>
-<ul>
+  </div>
+  <ul>
    <% user_task.types.forEach(function(type){ %>
    <li class="taskType-item">
     <i class="iconfont icon-tag"></i>
@@ -17,148 +17,158 @@
       <input type="text" class="tac editText">
       <button class="save">保存</button>
       <button class="cancle">取消</button>
-  </span>
-</li>
-<% }); %>
+    </span>
+  </li>
+  <% }); %>
 </ul>
 <div class="addType">
-    <input type="text" class="typeText tac">
-    <button class="addBtn">
-        增加类型
-    </button>
+  <input type="text" class="typeText tac">
+  <button class="addBtn">
+    增加类型
+  </button>
 </div>
 </div>
 <div class="task-wrapper">
-    <% user_task.types.forEach(function(type){ %>
-    <div class="task-panel">
-        <div class="title">任务类型:
-            <span class="typeName"><%= type.type_name %></span>    
-        </div> 
-        <ul class="taskItems">
-            <% type.tasks.forEach(function(task){ %>
-            <% if (task.complete === false) { %>
-            <li>
-                <span class="taskName"><%= task.name %></span>    
-                <button class="finish">完成</button>
-                <button class="seeContent">查看详情</button>
-                <button class="edit">修改</button>
-                <div class="modifyBlock dn">
-                    <input type="text" class="editText">
-                    <button class="save">保存</button>
-                    <button class="cancle">取消</button>
-                </div>
-            </li> 
-            <% } %>
-            <% }); %>
-        </ul>
-        <div class="addBlock">
-            <button class="add">增加任务</button>
-            <div class="addBlock-inner dn">
-                <input type="text">
-                <button class="confirm">确认</button>
-                <button class="cancle">取消</button>
-            </div>
+  <% user_task.types.forEach(function(type){ %>
+  <div class="task-panel">
+    <div class="title">任务类型:
+      <span class="typeName"><%= type.type_name %></span>    
+    </div> 
+    <ul class="taskItems">
+      <% type.tasks.forEach(function(task){ %>
+      <% if (task.complete === false) { %>
+      <li>
+        <span class="taskName"><%= task.name %></span>    
+        <button class="finish">完成</button>
+        <button class="seeContent">查看详情</button>
+        <button class="edit">修改</button>
+        <div class="modifyBlock dn">
+          <input type="text" class="editText">
+          <button class="save">保存</button>
+          <button class="cancle">取消</button>
         </div>
-        <div class="completedTasks">
-            <% var count = 0; %>
-            <% type.tasks.forEach(function(task){ %>
-            <% if (task.complete === true) { %>
-            <% count++; %>
-            <% } %>
-            <% }); %>
-            <button class="see">查看已完成的</button>
-            已完成：<span class="count"><%= count %></span>个
-            <button class="delete">清空</button>
-            <ul class="items">
-                <% type.tasks.forEach(function(task){ %>
-                <% if (task.complete === true) { %>
-                <li>
-                    <span class="name"><%= task.name %></span>    
-                </li> 
-                <% } %>
-                <% }); %>
-            </ul>
-        </div>
+      </li> 
+      <% } %>
+      <% }); %>
+    </ul>
+    <div class="addBlock">
+      <button class="add">增加任务</button>
+      <div class="addBlock-inner dn">
+        <input type="text">
+        <button class="confirm">确认</button>
+        <button class="cancle">取消</button>
+      </div>
     </div>
-    <% }); %>
+    <div class="completedTasks">
+      <% var count = 0; %>
+      <% type.tasks.forEach(function(task){ %>
+      <% if (task.complete === true) { %>
+      <% count++; %>
+      <% } %>
+      <% }); %>
+      <button class="see">查看已完成的</button>
+      已完成：<span class="count"><%= count %></span>个
+      <button class="delete">清空</button>
+      <ul class="items">
+        <% type.tasks.forEach(function(task){ %>
+        <% if (task.complete === true) { %>
+        <li>
+          <span class="name"><%= task.name %></span>    
+        </li> 
+        <% } %>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+  <% }); %>
 
 </div>
 <div class="welcomeWords fl">
-    <div class="welcomeWrapper">
+<div id="container" class="taskRunBallBox"></div>
+  <div class="welcomeWrapper">
+    <% var allTaskNumber = 0; %>
+    <% user_task.types.forEach(function(type){ %>
+    <% type.tasks.forEach(function(task){ %>
+    <% if (task.complete === false) { %>
+    <% allTaskNumber++; %>
+    <% } %>
+    <% }); %>
+    <% }); %>
 
-
-        <% var allTaskNumber = 0; %>
-        <% user_task.types.forEach(function(type){ %>
-        <% type.tasks.forEach(function(task){ %>
-        <% if (task.complete === false) { %>
-        <% allTaskNumber++; %>
-        <% } %>
-        <% }); %>
-        <% }); %>
-
-        <div class="bigWords">
-         <i class="iconfont icon-iconindexhuanying"></i>
-         欢迎您！
+<!--     <div class="bigWords">
+     <i class="iconfont icon-iconindexhuanying"></i>
+     欢迎您！
+   </div> -->
+   <div class="needDo">
+     <div class="title">
+       您还有 <span class="count"><%= allTaskNumber %></span>  项任务需要完成! 
+       <i class="iconfont icon-tishi"></i>
      </div>
-     <div class="needDo">
-         <div class="title">
-             您还有 <span class="count"><%= allTaskNumber %></span>  项任务需要完成! 
-             <i class="iconfont icon-tishi"></i>
-         </div>
-         <div class="tasks">
-             <% user_task.types.forEach(function(type){ %>
-             <% var typeName = type.type_name; %>
-                  <% type.tasks.forEach(function(task){ %>
-                  <% if (task.complete === false) { %>
-                  <div class="task">
-                      <i class="iconfont icon-renwudiaodu"></i>
-                      <span class="taskName"><%= task.name %></span>(<span class="typeName"><%= typeName %></span>)
+     <div class="tasks">
+       <% user_task.types.forEach(function(type){ %>
+       <% var typeName = type.type_name; %>
+       <% type.tasks.forEach(function(task){ %>
+       <% if (task.complete === false) { %>
+       <div class="task">
+        <i class="iconfont icon-renwudiaodu"></i>
+        <span class="taskName"><%= task.name %></span>(<span class="typeName"><%= typeName %></span>)
 
-                  </div>
-                  <% } %>
-                  <% }); %>
-
-          <% }); %>
       </div>
-  </div>
-  <div class="finished">
-      <% var allCompletedTaskNumber = 0; %>
-      <% user_task.types.forEach(function(type){ %>
-      <% type.tasks.forEach(function(task){ %>
-      <% if (task.complete === true) { %>
-      <% allCompletedTaskNumber++; %>
       <% } %>
       <% }); %>
-      <% }); %> 
-      您已经累计完成了 
+
+      <% }); %>
+    </div>
+  </div>
+  <div class="finished">
+    <% var allCompletedTaskNumber = 0; %>
+    <% user_task.types.forEach(function(type){ %>
+    <% type.tasks.forEach(function(task){ %>
+    <% if (task.complete === true) { %>
+    <% allCompletedTaskNumber++; %>
+    <% } %>
+    <% }); %>
+    <% }); %> 
+    您已经累计完成了 
     <span class="count"><%= allCompletedTaskNumber %></span>
-       项任务
-      <i class="iconfont icon-icon"></i>
+    项任务
+    <i class="iconfont icon-icon"></i>
   </div>
 </div>
 </div>
 <div class="taskContentView dn fl">
-    <button class="closeView">关闭详情</button>
-    <div class="typeNameTitle clear">任务类型名：</div> 
-    <div class="typeName clear">工作</div>
-    <div class="taskNameTitle clear">
-        任务名：
-    </div>
-    <div class="taskName clear">做完前端</div>
-    <button class="edit">编辑详情</button>
-    <div class="view-content db">
-    </div>
-    <div class="edit-content dn">
-        <textarea >
-        </textarea>
-        <button class="save">保存</button>
-        <button class="cancle">取消</button>
-    </div>
+  <button class="closeView">关闭详情</button>
+  <div class="typeNameTitle clear">任务类型名：</div> 
+  <div class="typeName clear">工作</div>
+  <div class="taskNameTitle clear">
+    任务名：
+  </div>
+  <div class="taskName clear">做完前端</div>
+  <button class="edit">编辑详情</button>
+  <div class="view-content db">
+  </div>
+  <div class="edit-content dn">
+    <textarea >
+    </textarea>
+    <button class="save">保存</button>
+    <button class="cancle">取消</button>
+  </div>
 </div>
 
 </div>
+<audio id="finishMusic" src="/docs/finish.mp3"  hidden="true"  >
+</audio>
+<div class="finishCurtain">
+  <img src="/docs/finish2.png" alt="">
+  <div class="finishCurtain-words">
+   Finished!
+  </div>
+</div>
 <!-- 处理任务页面的js -->
 <script src="javascripts/task.js">
+</script>
+<!-- 小球动画 -->
+<script src="javascripts/taskRunBall.js">
 </script>
 <!-- 嵌入footer -->
 <% include footer.html %>
